@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Projekat1</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="username">username</string>
+    <string name="jira_system_for_raf_students">Jira system for Raf students</string>
+    <string name="log_out">Log out</string>
+    <string name="enhancment">Enhancment</string>
+    <string name="bugs">Bugs</string>
+    <string name="in_progress">In progress</string>
+    <string name="raf_jira_statistics">Raf Jira statistics</string>
+</resources>
