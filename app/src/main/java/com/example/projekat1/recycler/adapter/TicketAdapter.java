@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,11 +54,11 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
     // unutrasnja klasa
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-//        private final Context context;
+        private final Context context;
 
         public ViewHolder(@NonNull View itemView, Context context, Consumer<Integer> onItemClicked) {
             super(itemView);
-//            this.context = context;
+            this.context = context;
             itemView.setOnClickListener(v -> {
                 if (getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
                     onItemClicked.accept(getBindingAdapterPosition());
@@ -69,6 +70,9 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
             ImageView imageView = itemView.findViewById(R.id.ticketIcon);
             ImageButton iTopButton = itemView.findViewById(R.id.ticketTopButton);
             ImageButton iButtonBottom = itemView.findViewById(R.id.ticketBottomButton);
+
+//            SharedViewModel sharedViewModel  = new ViewModelProvider(GET).get(SharedViewModel.class); //todo figure this out!
+
             boolean isAdmin = false;
 
             ((TextView) itemView.findViewById(R.id.ticketTitleListItem)).setText(ticket.getTitle());
@@ -88,7 +92,9 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                 iTopButton.setImageResource(R.drawable.ic_arrow_right_24);
                 if(isAdmin){
                     iButtonBottom.setImageResource(R.drawable.ic_remove);//ako je admin ima remove
-                    iTopButton.setOnClickListener(t ->{
+                    iButtonBottom.setOnClickListener(t ->{
+                        System.out.println("KURAC " );//todo get ticket id, and remove it from list FIGURE OUT HOW TO GET SHARED VIEW MODEL
+
                         //todo set remove item from list
                     });
                 }
