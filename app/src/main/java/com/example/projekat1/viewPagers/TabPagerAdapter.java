@@ -11,7 +11,7 @@ import com.example.projekat1.fragments.ProfileFragment;
 import com.example.projekat1.fragments.StatisticsFragment;
 
 
-public class PagerAdapter extends FragmentPagerAdapter {
+public class TabPagerAdapter extends FragmentPagerAdapter {
 
     private final int ITEM_COUNT = 4;
     public static final int FRAG_STAT_0 = 0;
@@ -20,7 +20,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public static final int FRAG_PROFILE_3 = 3;
 
 
-    public PagerAdapter(@NonNull FragmentManager fm) {
+    public TabPagerAdapter(@NonNull FragmentManager fm) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
@@ -30,10 +30,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment;
         switch (position) {
-            case FRAG_STAT_0: fragment = new StatisticsFragment();
+            case FRAG_STAT_0: fragment = new PlaceHolderFragment();
                 System.out.println("-----pozicija: " + position);
             break;
-            case FRAG_LIST_2: fragment = new NewTicketFragment();//todo ima bug da su frag list i frag new zamenjeni, okrenuo sam brojeve tako da radi, ali je cudno
+            case FRAG_LIST_2: fragment = new PlaceHolderFragment();//todo ima bug da su frag list i frag new zamenjeni, okrenuo sam brojeve tako da radi, ali je cudno
 //                System.out.println("U DRUGOM");
                 System.out.println("----pozicija: " + position);
             break;
@@ -41,11 +41,11 @@ public class PagerAdapter extends FragmentPagerAdapter {
 //                System.out.println("U TRECEM");
                 System.out.println("----pozicija: " + position);
             break;
-            case FRAG_PROFILE_3: fragment = new ProfileFragment();
+            case FRAG_PROFILE_3: fragment = new PlaceHolderFragment();
 //                System.out.println("U CET");
                 System.out.println("----pozicija: " + position);
                 break;
-            default: fragment = new StatisticsFragment();
+            default: fragment = new PlaceHolderFragment();
                 System.out.println("----pozicija: " + "U default");
             break;
         }

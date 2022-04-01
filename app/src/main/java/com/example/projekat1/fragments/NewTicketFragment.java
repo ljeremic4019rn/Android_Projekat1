@@ -11,10 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projekat1.R;
 import com.example.projekat1.activities.MainActivity;
 import com.example.projekat1.models.Ticket;
+import com.example.projekat1.viewModels.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +30,7 @@ public class NewTicketFragment extends Fragment {
     private EditText estimated;
     private EditText title;
     private EditText description;
+    private SharedViewModel sharedViewModel;
 
     public NewTicketFragment() {
         super(R.layout.fragment_new_ticket);
@@ -46,6 +49,7 @@ public class NewTicketFragment extends Fragment {
         estimated = (EditText) view.findViewById(R.id.estimatedET);
         title = (EditText) view.findViewById(R.id.titleET);
         description = (EditText) view.findViewById(R.id.descriptionET);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
 
 
@@ -71,12 +75,15 @@ public class NewTicketFragment extends Fragment {
             Ticket ticket = new Ticket(
                     typeSpinner.getSelectedItem().toString(),
                     prioritySpinner.getSelectedItem().toString(),
-                    estimated.getText().toString(),
+                    Integer.parseInt(estimated.getText().toString()),
                     title.getText().toString(),
                     description.getText().toString());
 
-            MainActivity.tickets.add(ticket);//todo promeni na live mutable data
+                if(checkIfAllSelected()){
+                    sharedViewModel.addTicket(ticket);//todo proveri da li radi!!!!!!!!!!!!!
+                }
 
+                //recyclerViewModel = new ViewModelProvider(this).get(RecyclerViewModel.class);
             }
             else{
                 Toast.makeText(this.getActivity(), "All fields must be filled",Toast.LENGTH_LONG).show();

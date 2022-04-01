@@ -2,20 +2,48 @@ package com.example.projekat1.models;
 
 public class Ticket {
 
+    private int id;
+    private int loggedTime;
+    private int estimated;
     private String type;
     private String priority;
-    private String estimated;
     private String title;
     private String description;
     private String progress;
 
-    public Ticket(String type, String priority, String estimated, String title, String description) {
+    public Ticket(String type, String priority, int estimated, String title, String description) {
         this.type = type;
         this.priority = priority;
         this.estimated = estimated;
         this.title = title;
         this.description = description;
         this.progress = "todo";
+        this.loggedTime = 0;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getLoggedTime() {
+        return loggedTime;
+    }
+
+    public void setLoggedTime(int loggedTime) {
+        this.loggedTime = loggedTime;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     public String getType() {
@@ -34,11 +62,11 @@ public class Ticket {
         this.priority = priority;
     }
 
-    public String getEstimated() {
+    public int getEstimated() {
         return estimated;
     }
 
-    public void setEstimated(String estimated) {
+    public void setEstimated(int estimated) {
         this.estimated = estimated;
     }
 

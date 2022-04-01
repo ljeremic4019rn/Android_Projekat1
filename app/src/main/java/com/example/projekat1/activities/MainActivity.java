@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.example.projekat1.R;
+import com.example.projekat1.fragments.TabsFragment;
 import com.example.projekat1.models.Ticket;
 import com.example.projekat1.models.User;
 import com.example.projekat1.fragments.BottomNavFragment;
@@ -44,23 +45,18 @@ public class MainActivity extends AppCompatActivity {
 
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         splashScreen.setKeepOnScreenCondition(() -> {
-
             setContentView(R.layout.activity_main);
             logged = sharedPreferences.getString(LOGGED_USER, "");
-
-            if (logged.equals("")){
-                loggedIn = false;
-            }
-            else loggedIn = true;
-
+            loggedIn = !logged.equals("");
             checkLogin();
+
             return false;
         });
 
-//
+
 //        setContentView(R.layout.activity_main);//ZA TESTIRANJE
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.add(R.id.mainFragContainer, new BottomNavFragment());
+//        transaction.add(R.id.mainFragContainer, new TabsFragment());
 //        transaction.commit();
 
     }
