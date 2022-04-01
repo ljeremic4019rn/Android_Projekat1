@@ -10,4 +10,8 @@
     <string name="bugs">Bugs</string>
     <string name="in_progress">In progress</string>
     <string name="raf_jira_statistics">Raf Jira statistics</string>
+    <string name="statistics">Statistics</string>
+    <string name="new_text">New</string>
+    <string name="tickets">Tickets</string>
+    <string name="profile">Profile</string>
 </resources>

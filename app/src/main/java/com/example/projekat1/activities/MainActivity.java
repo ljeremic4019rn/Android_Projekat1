@@ -2,18 +2,16 @@ package com.example.projekat1.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.example.projekat1.R;
 import com.example.projekat1.User;
-import com.example.projekat1.fragments.FirstFragment;
+import com.example.projekat1.fragments.BottomNavFragment;
 import com.example.projekat1.fragments.LogInFragment;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         users.put("admin_marko", new User("admin_marko","1234","marko@gmail.com"));
         users.put("luka", new User("luka","1234","luka@gmail.com"));
@@ -47,13 +46,21 @@ public class MainActivity extends AppCompatActivity {
             checkLogin();
             return false;
         });
+
+//
+//        setContentView(R.layout.activity_main);//ZA TESTIRANJE
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.add(R.id.mainFragContainer, new BottomNavFragment());
+//        transaction.commit();
+
     }
+
 
 
     private void checkLogin(){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (loggedIn){
-            transaction.add(R.id.mainFragContainer, new FirstFragment());//todo change to main fragment
+            transaction.add(R.id.mainFragContainer, new BottomNavFragment());//todo change to main fragment
         }
         else {
             transaction.add(R.id.mainFragContainer, new LogInFragment());

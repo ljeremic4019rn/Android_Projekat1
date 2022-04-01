@@ -15,7 +15,7 @@ public class ProfileFragment extends Fragment {
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {//todo popravi xml file
         super.onCreate(savedInstanceState);
     }
 }

@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 import com.example.projekat1.R;
 
 
-public class FirstFragment extends Fragment {
+public class PlaceHolderFragment extends Fragment {
 
-    public FirstFragment() {
-        super(R.layout.fragment_first);
+    public PlaceHolderFragment() {
+        super(R.layout.fragment_placeholder);
     }
 
     @Override
