@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projekat1.R;
+import com.example.projekat1.fragments.ProfileFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -53,12 +55,18 @@ public class LoginActivity extends AppCompatActivity {
 
             System.out.println( userInput + " - " + passInput);
 
-            if (!userInput.equals("") && !passInput.equals("")){
-                sharedPreferences
-                        .edit()
-                        .putString(REG_NAME_KEY, userInput)
-//                        .putString(REG_PASS_KEY, password.getText().toString().trim())
-                        .apply();
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+////        transaction.replace(R.id.mainFrag, new FirstFragment());
+//            transaction.add(R.id.mainFrag, new ProfileFragment());
+//            transaction.commit();
+
+            finish();
+
+//            if (!userInput.equals("") && !passInput.equals("")){
+//                sharedPreferences
+//                        .edit()
+//                        .putString(REG_NAME_KEY, userInput)
+//                        .apply();
 
 
 //            Intent intent = new Intent(this, ScreenActivity.class);
@@ -68,10 +76,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-            }
-            else {
-                Toast.makeText(this, "Empty login parameter.", Toast.LENGTH_SHORT).show();
-            }
+//            }
+//            else {
+//                Toast.makeText(this, "Empty login parameter.", Toast.LENGTH_SHORT).show();
+//            }
         });
+
+
+
     }
 }
