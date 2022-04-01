@@ -18,7 +18,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String LOGGED_USER = "loggeduser";
+    public static final String LOGGED_USER = "loggedusername";
+    public static final String LOGGED_MAIL = "loggedmail";
+
     private boolean loggedIn;
     private String logged;
     public static final Map<String, User> users = new HashMap<>();

@@ -50,14 +50,16 @@ public class LogInFragment extends Fragment {
 
         loginBtn.setOnClickListener(v ->{
             String uname = username.getText().toString().trim();
+            String umail = email.getText().toString();
 
             if(MainActivity.users.containsKey(uname)){//proverimo da li user uopte posoji
                 User user = MainActivity.users.get(uname);
-                if(user.getPassword().equals(password.getText().toString().trim()) && user.getEmail().equals(email.getText().toString().trim())){//proverimo da li matchuju podaci
+                if(user.getPassword().equals(password.getText().toString().trim()) && user.getEmail().equals(umail)){//proverimo da li matchuju podaci
                     SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getActivity().getPackageName(), Context.MODE_PRIVATE);
                     sharedPreferences//stavimo koji je user trenutno ulogovan
                             .edit()
                             .putString(MainActivity.LOGGED_USER, uname)
+                            .putString(MainActivity.LOGGED_MAIL, umail)
                             .apply();
 
 
