@@ -14,4 +14,22 @@
     <string name="new_text">New</string>
     <string name="tickets">Tickets</string>
     <string name="profile">Profile</string>
+    <string name="ticket_title">Ticket title</string>
+    <string name="ticket_description">Ticket description</string>
+    <string name="add_new_ticket">Add new ticket</string>
+
+    <!--    SPINNER ELEMENTS    -->
+    <string-array name="ticket_type">
+        <item>Bug</item>
+        <item>Enhancement</item>
+    </string-array>
+
+    <string-array name="priority">
+        <item>Highest</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+        <item>Lowest</item>
+    </string-array>
+
 </resources>

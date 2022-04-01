@@ -8,10 +8,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.example.projekat1.R;
-import com.example.projekat1.User;
+import com.example.projekat1.models.Ticket;
+import com.example.projekat1.models.User;
 import com.example.projekat1.fragments.BottomNavFragment;
 import com.example.projekat1.fragments.LogInFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +22,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String LOGGED_USER = "loggedusername";
     public static final String LOGGED_MAIL = "loggedmail";
+    public static final String TODO = "todo";
+    public static final String IN_PROGRESS = "inprogress";
+    public static final String DONE = "done";
 
     private boolean loggedIn;
     private String logged;
     public static final Map<String, User> users = new HashMap<>();
+    public static final ArrayList<Ticket> tickets = new ArrayList<>();
+
+//    public static final
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

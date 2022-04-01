@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projekat1.R;
-import com.example.projekat1.User;
+import com.example.projekat1.models.User;
 import com.example.projekat1.activities.MainActivity;
 
 public class LogInFragment extends Fragment {
