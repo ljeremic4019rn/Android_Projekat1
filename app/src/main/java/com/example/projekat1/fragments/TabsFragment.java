@@ -12,6 +12,8 @@ import com.example.projekat1.R;
 import com.example.projekat1.viewPagers.TabPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Objects;
+
 public class TabsFragment extends Fragment {
 
     private ViewPager viewPager;
@@ -36,7 +38,7 @@ public class TabsFragment extends Fragment {
         viewPager = (ViewPager) view.findViewById(R.id.viewPagerTabs);//todo profile dugme ima bug da kad se klikne ubije tab na kome se trenutno nalazis
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
 
-        viewPager.setAdapter(new TabPagerAdapter(this.getActivity().getSupportFragmentManager()));
+        viewPager.setAdapter(new TabPagerAdapter(this.requireActivity().getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
     }
 
