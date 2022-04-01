@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/drawable/ic_baseline_bug_report_24.xml" value="0.3305" />
+        <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3305" />
+        <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/drawable/ic_baseline_sticky_note_2_24.xml" value="0.3305" />
         <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/drawable/ic_engance.xml" value="0.3305" />
+        <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3305" />
         <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/layout/activity_login.xml" value="0.36277173913043476" />
         <entry key="..\:/Users/Shus/Programing/AndroidApps/Projekat1/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />

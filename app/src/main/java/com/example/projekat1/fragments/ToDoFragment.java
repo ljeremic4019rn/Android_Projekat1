@@ -1,5 +1,7 @@
 package com.example.projekat1.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -47,7 +49,10 @@ public class ToDoFragment extends Fragment {
     }
 
     private void initRecycler() {
-        ticketAdapter = new TicketAdapter(new TicketDiffItemCallback(), ticket -> {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getActivity().getPackageName(), Context.MODE_PRIVATE);
+
+
+        ticketAdapter = new TicketAdapter(sharedPreferences, new TicketDiffItemCallback(), ticket -> {//todo ovde sam stavio SP, mozda je losa ideja
             Toast.makeText(getActivity(), ticket.getId() + "", Toast.LENGTH_SHORT).show();
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

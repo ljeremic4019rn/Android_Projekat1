@@ -18,9 +18,14 @@ public class SharedViewModel extends ViewModel {
 
     public SharedViewModel() {
         for (int i = 0; i < 10; i++) {
-           Ticket ticket = new Ticket("bug","Low",5,"Test ticket " + counter, "Ovo je test ticket");
-           ticket.setId(counter++);
+           Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug");
+            Ticket ticket2 = new Ticket("Enhancement","Medium",5,"Test ticket " + counter, "Ovo je test ticket");
+            ticket.setId(counter++);
+
+            if(counter %2 == 0)
             ticketsTempList.add(ticket);
+            else ticketsTempList.add(ticket2);
+
         }
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTempList);
