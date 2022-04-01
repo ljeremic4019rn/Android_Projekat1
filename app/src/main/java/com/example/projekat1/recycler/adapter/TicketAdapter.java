@@ -45,11 +45,11 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
     // unutrasnja klasa
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final Context context;
+//        private final Context context;
 
         public ViewHolder(@NonNull View itemView, Context context, Consumer<Integer> onItemClicked) {
             super(itemView);
-            this.context = context;
+//            this.context = context;
             itemView.setOnClickListener(v -> {
                 if (getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
                     onItemClicked.accept(getBindingAdapterPosition());
