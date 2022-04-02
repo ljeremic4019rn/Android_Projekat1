@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,14 +26,13 @@ import java.util.function.Consumer;
 public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder> {
 
     private final Consumer<Ticket> onTicketClicked;
-    public static SharedPreferences sharedPreferences;
     public static SharedViewModel sharedViewModel;
 
-    public TicketAdapter(SharedPreferences sharedPreferences, SharedViewModel sharedViewModel, @NonNull DiffUtil.ItemCallback<Ticket> diffCallback, Consumer<Ticket> onTicketClicked) {
+    public TicketAdapter(SharedViewModel sharedViewModel, @NonNull DiffUtil.ItemCallback<Ticket> diffCallback, Consumer<Ticket> onTicketClicked) {
         super(diffCallback);
         this.onTicketClicked = onTicketClicked;
-        TicketAdapter.sharedPreferences = sharedPreferences;
         TicketAdapter.sharedViewModel = sharedViewModel;
+
     }
 
     @NonNull
@@ -72,9 +72,12 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
         }
 
         public void bind(Ticket ticket) {
+            SharedPreferences sharedPreferences = itemView.getContext().getSharedPreferences(itemView.getContext().getPackageName(), Context.MODE_PRIVATE);
+
             ImageView imageView = itemView.findViewById(R.id.ticketIcon);
             ImageButton iTopButton = itemView.findViewById(R.id.ticketTopButton);
             ImageButton iButtonBottom = itemView.findViewById(R.id.ticketBottomButton);
+
 
             boolean isAdmin = false;
 

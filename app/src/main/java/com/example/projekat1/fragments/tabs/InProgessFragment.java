@@ -49,9 +49,7 @@ public class InProgessFragment extends Fragment {
     }
 
     private void initRecycler() {
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getActivity().getPackageName(), Context.MODE_PRIVATE);
-
-        ticketAdapter = new TicketAdapter(sharedPreferences, sharedViewModel,new TicketDiffItemCallback(), ticket -> {//todo ovde sam stavio SP, mozda je losa ideja
+        ticketAdapter = new TicketAdapter( sharedViewModel,new TicketDiffItemCallback(), ticket -> {//todo ovde sam stavio SP, mozda je losa ideja
             Toast.makeText(getActivity(), ticket.getId() + "", Toast.LENGTH_SHORT).show();
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
