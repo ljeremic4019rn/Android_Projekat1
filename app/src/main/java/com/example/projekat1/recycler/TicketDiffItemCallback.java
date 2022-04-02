@@ -18,7 +18,6 @@ public class TicketDiffItemCallback extends DiffUtil.ItemCallback<Ticket> {
     public boolean areContentsTheSame(@NonNull Ticket oldItem, @NonNull Ticket newItem) {
         return oldItem.getTitle().equals(newItem.getTitle())
                 && oldItem.getDescription().equals(newItem.getDescription())
-                && oldItem.getEstimated() == (newItem.getEstimated())
                 && oldItem.getPriority().equals(newItem.getPriority())
                 && oldItem.getLoggedTime() == (newItem.getLoggedTime())
                 && oldItem.getEstimated() ==(newItem.getEstimated());

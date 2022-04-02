@@ -73,27 +73,28 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
 
         public void bind(Ticket ticket) {
             SharedPreferences sharedPreferences = itemView.getContext().getSharedPreferences(itemView.getContext().getPackageName(), Context.MODE_PRIVATE);
+            boolean isAdmin = false;
 
             ImageView imageView = itemView.findViewById(R.id.ticketIcon);
             ImageButton iTopButton = itemView.findViewById(R.id.ticketTopButton);
             ImageButton iButtonBottom = itemView.findViewById(R.id.ticketBottomButton);
 
-
-            boolean isAdmin = false;
-
-            ((TextView) itemView.findViewById(R.id.ticketTitleListItem)).setText(ticket.getTitle());
+            ((TextView) itemView.findViewById(R.id.ticketTitleListItem)).setText(ticket.getTitle());//postavljamo title na list item
             ((TextView) itemView.findViewById(R.id.ticketDescriptionListItem)).setText(ticket.getDescription());
 
-            if((sharedPreferences.getString(MainActivity.LOGGED_USER, "").contains("admin")))//da li je ulogovan admin
+
+            //da li je ulogovan admin
+            if((sharedPreferences.getString(MainActivity.LOGGED_USER, "").contains("admin")))
                 isAdmin = true;
 
-            if (ticket.getType().equals("Bug")){//postavljanje glavne slike na osnovu tipa tiketa
+            //postavljanje glavne slike na osnovu tipa tiketa
+            if (ticket.getType().equals("Bug")){
                 imageView.setImageResource(R.drawable.ic_baseline_bug_report_24);
             }
             else imageView.setImageResource(R.drawable.ic_engance);
 
             //za to-do recycler
-            if (ticket.getProgress().equals(MainActivity.TODO)){
+            if (ticket.getProgress().equals(MainActivity.TODO)){//ako ima to-do marker u sebi
                 iTopButton.setImageResource(R.drawable.ic_arrow_right_24);
 
                 iTopButton.setOnClickListener(tb ->{//move ticket to progress from to-do
@@ -125,7 +126,7 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
             }
             //za done recycler
             else{
-                iTopButton.setVisibility(View.INVISIBLE);
+                iTopButton.setVisibility(View.INVISIBLE);//ne trebaju nam drugmici vise, samo ih sklonim
                 iButtonBottom.setVisibility(View.INVISIBLE);
             }
         }
