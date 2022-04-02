@@ -17,13 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projekat1.R;
-import com.example.projekat1.activities.MainActivity;
 import com.example.projekat1.models.Ticket;
 import com.example.projekat1.viewModels.SharedViewModel;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class NewTicketFragment extends Fragment {
 
@@ -84,7 +79,7 @@ public class NewTicketFragment extends Fragment {
 //                            Integer.parseInt(estimated.getText().toString()),title.getText().toString(),description.getText().toString());
 
                     Ticket ticket = new Ticket("asdf","asdf",12,"new","ccccc");
-                    sharedViewModel.addTicket(ticket);
+                    sharedViewModel.addTodoTicket(ticket);
                 } else {
 //                    Toast.makeText(this.getActivity(), "You have to fill in all the fields first.", Toast.LENGTH_LONG).show();
                     showErrorToast();

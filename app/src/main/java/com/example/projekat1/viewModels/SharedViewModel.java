@@ -25,25 +25,8 @@ public class SharedViewModel extends ViewModel {
 
 
     public SharedViewModel() {
-        for (int i = 0; i < 10; i++) {
-           Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug");
-            Ticket ticket2 = new Ticket("Enhancement","Medium",5,"Test ticket " + counter, "Ovo je test ticket");
 
-            Ticket ticket3 = new Ticket("Bug","Low",5,"Test ticket PROGRESS" + counter, "Ovo je test ticket za bug");
-            ticket3.setProgress(MainActivity.IN_PROGRESS);
-            Ticket ticket4 = new Ticket("Bug","Low",5,"Test ticket DONE" + counter, "Ovo je test ticket za bug");
-            ticket4.setProgress(MainActivity.DONE);
-
-            ticket.setId(counter++);
-
-            ticketsInProgressTempList.add(ticket3);
-            ticketsDoneTempList.add(ticket4);
-
-            if(counter %2 == 0)
-            ticketsTodoTempList.add(ticket);
-            else ticketsTodoTempList.add(ticket2);
-
-        }
+        addTestTickets();//napunjeno sa filler ticketima
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
@@ -70,25 +53,80 @@ public class SharedViewModel extends ViewModel {
         ticketsTodoLiveData.setValue(filteredList);
     }
 
-//    public LiveData<List<Ticket>> getTickets() {
-//        return ticketsTodoLiveData;
-//    }
 
-
-    public void addTicket(Ticket ticket) {
+    public void addTodoTicket(Ticket ticket) {//good
         ticket.setId(counter++);
         ticketsTodoTempList.add(ticket);
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
     }
 
-    public void removeTicket(int id) {
-        Optional<Ticket> ticketObject = ticketsTodoTempList.stream().filter(ticket -> ticket.getId() == id).findFirst();
-        if (ticketObject.isPresent()) {
-            ticketsTodoTempList.remove(ticketObject.get());
+    public void removeTodoTicket(Ticket ticket) {//good
+        if (ticketsTodoTempList.contains(ticket)){
+            ticketsTodoTempList.remove(ticket);
             ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
             ticketsTodoLiveData.setValue(listToSubmit);
         }
+    }
+
+    public void moveTicketToProgress(Ticket ticket) {//good
+        ticket.setProgress(MainActivity.IN_PROGRESS);
+        ticketsInProgressTempList.add(ticket);
+        ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsInProgressTempList);
+        ticketsInProgressLiveData.setValue(listToSubmit);
+        removeTodoTicket(ticket);
+    }
+
+    public void removeProgressTicket(Ticket ticket){
+        if (ticketsInProgressTempList.contains(ticket)){
+            ticketsInProgressTempList.remove(ticket);
+            ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsInProgressTempList);
+            ticketsInProgressLiveData.setValue(listToSubmit);
+        }
+    }
+
+    public void moveTicketToTodo(Ticket ticket){
+        ticket.setProgress(MainActivity.TODO);
+        ticketsTodoTempList.add(ticket);
+        ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
+        ticketsTodoLiveData.setValue(listToSubmit);
+        removeProgressTicket(ticket);
+    }
+
+    public void moveTicketToDone(Ticket ticket) {
+        ticket.setProgress(MainActivity.DONE);
+        ticketsDoneTempList.add(ticket);
+        ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsDoneTempList);
+        ticketsDoneLiveData.setValue(listToSubmit);
+        removeProgressTicket(ticket);
+    }
+
+    //samo za testiranje dodati ticketi
+    private void addTestTickets(){
+        for (int i = 0; i < 10; i++) {
+            Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug");
+            Ticket ticket2 = new Ticket("Enhancement","Medium",5,"Test ticket " + counter, "Ovo je test ticket za enhancement");
+            counter++;
+            if(counter %2 == 0) ticketsTodoTempList.add(ticket);
+            else ticketsTodoTempList.add(ticket2);
+        }
+
+        Ticket ticket3 = new Ticket("Bug","Low",5,"Test ticket PROGRESS" + counter++, "Ovo je test ticket za bug");
+        Ticket ticket4 = new Ticket("Enhancement","Low",5,"Test ticket PROGRESS" + counter++, "Ovo je test ticket za Enhancement");
+        Ticket ticket5 = new Ticket("Enhancement","Low",5,"Test ticket PROGRESS" + counter++, "Ovo je test ticket za Enhancement");
+        ticket3.setProgress(MainActivity.IN_PROGRESS);
+        ticket5.setProgress(MainActivity.IN_PROGRESS);
+        ticket4.setProgress(MainActivity.IN_PROGRESS);
+        ticketsInProgressTempList.add(ticket3);
+        ticketsInProgressTempList.add(ticket5);
+        ticketsInProgressTempList.add(ticket4);
+
+        Ticket ticket6 = new Ticket("Bug","Low",5,"Test ticket DONE" + counter++, "Ovo je test ticket za bug");
+        Ticket ticket7 = new Ticket("Enhancement","Medium",5,"Test ticket DONE" + counter++, "Ovo je test ticket za Enhancement");
+        ticket7.setProgress(MainActivity.DONE);
+        ticket7.setProgress(MainActivity.DONE);
+        ticketsDoneTempList.add(ticket7);
+        ticketsDoneTempList.add(ticket7);
     }
 
 }

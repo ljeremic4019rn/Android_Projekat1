@@ -44,6 +44,8 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
             Ticket ticket = getItem(position);
             onTicketClicked.accept(ticket);
         });
+
+
     }
 
     @Override
@@ -77,28 +79,27 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
             ((TextView) itemView.findViewById(R.id.ticketTitleListItem)).setText(ticket.getTitle());
             ((TextView) itemView.findViewById(R.id.ticketDescriptionListItem)).setText(ticket.getDescription());
 
-            if((sharedPreferences.getString(MainActivity.LOGGED_USER, "").contains("admin")))
+            if((sharedPreferences.getString(MainActivity.LOGGED_USER, "").contains("admin")))//da li je ulogovan admin
                 isAdmin = true;
 
-            if (ticket.getType().equals("Bug")){
+            if (ticket.getType().equals("Bug")){//postavljanje glavne slike na osnovu tipa tiketa
                 imageView.setImageResource(R.drawable.ic_baseline_bug_report_24);
             }
             else imageView.setImageResource(R.drawable.ic_engance);
-
 
             //za to-do recycler
             if (ticket.getProgress().equals(MainActivity.TODO)){
                 iTopButton.setImageResource(R.drawable.ic_arrow_right_24);
 
-                iTopButton.setOnClickListener(tb ->{
-                    //todo move ticket to in progress tab
+                iTopButton.setOnClickListener(tb ->{//move ticket to progress from to-do
+                    sharedViewModel.moveTicketToProgress(ticket);
                 });
 
                 if(isAdmin){
                     iButtonBottom.setImageResource(R.drawable.ic_remove);//ako je admin ima remove
                     iButtonBottom.setOnClickListener(bb ->{
                         System.out.println("KURAC ");
-                        sharedViewModel.removeTicket(ticket.getId());
+                        sharedViewModel.removeTodoTicket(ticket);
                     });
                 }
                 else iButtonBottom.setVisibility(View.INVISIBLE);//ako nije admin sakri dugme
@@ -109,12 +110,12 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                 iTopButton.setImageResource(R.drawable.ic_arrow_right_24);
                 iButtonBottom.setImageResource(R.drawable.ic_arrow_left_24);
 
-                iTopButton.setOnClickListener(tb ->{
-
+                iTopButton.setOnClickListener(tb ->{//move ticket to to-do from progress
+                    sharedViewModel.moveTicketToDone(ticket);
                 });
 
-                iButtonBottom.setOnClickListener(bb ->{
-
+                iButtonBottom.setOnClickListener(bb ->{//move ticket to done from progress
+                    sharedViewModel.moveTicketToTodo(ticket);
                 });
             }
             //za done recycler
@@ -122,7 +123,6 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                 iTopButton.setVisibility(View.INVISIBLE);
                 iButtonBottom.setVisibility(View.INVISIBLE);
             }
-
         }
 
     }
