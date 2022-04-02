@@ -26,6 +26,7 @@ public class SharedViewModel extends ViewModel {
 
     public SharedViewModel() {
 
+        System.out.println("OVO SE POKRENULO");
         addTestTickets();//napunjeno sa filler ticketima
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
@@ -120,26 +121,33 @@ public class SharedViewModel extends ViewModel {
 
     //samo za testiranje dodati tiketi
     private void addTestTickets(){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug");
+            ticket.setId(counter++);
+            ticketsTodoTempList.add(ticket);
+
             Ticket ticket2 = new Ticket("Enhancement","Medium",5,"Test ticket " + counter, "Ovo je test ticket za enhancement");
-            counter++;
-            if(counter %2 == 0) ticketsTodoTempList.add(ticket);
-            else ticketsTodoTempList.add(ticket2);
+            ticket2.setId(counter++);
+            ticketsTodoTempList.add(ticket2);
         }
 
-        Ticket ticket3 = new Ticket("Bug","Low",5,"Test ticket PROGRESS" + counter++, "Ovo je test ticket za bug");
-        Ticket ticket4 = new Ticket("Enhancement","Low",5,"Test ticket PROGRESS" + counter++, "Ovo je test ticket za Enhancement");
-        Ticket ticket5 = new Ticket("Enhancement","Low",5,"Test ticket PROGRESS" + counter++, "Ovo je test ticket za Enhancement");
+        Ticket ticket3 = new Ticket("Bug","Low",5,"Test ticket PROGRESS" + counter, "Ovo je test ticket za bug");
+        ticket3.setId(counter++);
+        Ticket ticket4 = new Ticket("Enhancement","Low",5,"Test ticket PROGRESS" + counter, "Ovo je test ticket za Enhancement");
+        ticket4.setId(counter++);
+        Ticket ticket5 = new Ticket("Enhancement","Low",5,"Test ticket PROGRESS" + counter, "Ovo je test ticket za Enhancement");
+        ticket5.setId(counter++);
         ticket3.setProgress(MainActivity.IN_PROGRESS);
         ticket5.setProgress(MainActivity.IN_PROGRESS);
         ticket4.setProgress(MainActivity.IN_PROGRESS);
         ticketsInProgressTempList.add(ticket3);
-        ticketsInProgressTempList.add(ticket5);
         ticketsInProgressTempList.add(ticket4);
+        ticketsInProgressTempList.add(ticket5);
 
-        Ticket ticket6 = new Ticket("Bug","Low",5,"Test ticket DONE" + counter++, "Ovo je test ticket za bug");
-        Ticket ticket7 = new Ticket("Enhancement","Medium",5,"Test ticket DONE" + counter++, "Ovo je test ticket za Enhancement");
+        Ticket ticket6 = new Ticket("Bug","Low",5,"Test ticket DONE" + counter, "Ovo je test ticket za bug");
+        ticket6.setId(counter++);
+        Ticket ticket7 = new Ticket("Enhancement","Medium",5,"Test ticket DONE" + counter, "Ovo je test ticket za Enhancement");
+        ticket7.setId(counter++);
         ticket6.setProgress(MainActivity.DONE);
         ticket7.setProgress(MainActivity.DONE);
         ticketsDoneTempList.add(ticket6);

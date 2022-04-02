@@ -18,6 +18,7 @@
     <string name="ticket_description">Ticket description</string>
     <string name="add_new_ticket">Add new ticket</string>
     <string name="search">Search...</string>
+    <string name="edit_ticket">Edit ticket</string>
 
     <!--    SPINNER ELEMENTS    -->
     <string-array name="ticket_type">
