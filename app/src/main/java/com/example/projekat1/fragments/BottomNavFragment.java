@@ -1,5 +1,6 @@
 package com.example.projekat1.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -32,25 +33,26 @@ public class BottomNavFragment extends Fragment {
         init(view);
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void init(View view){
         viewPager = view.findViewById(R.id.viewPager);
         viewPager.setAdapter(new BottomNavPagerAdapter(this.requireActivity().getSupportFragmentManager()));
 
-        ((BottomNavigationView)view.findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {//todo zasto je castovano umesto da napravimo objekat?
+        ((BottomNavigationView)view.findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 // setCurrentItem metoda viewPager samo obavesti koji je Item trenutno aktivan i onda metoda getItem u adapteru setuje odredjeni fragment za tu poziciju
                 case R.id.navigation_1: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_STAT_0, false);
-                    System.out.println("U PRVOM");
+                    System.out.println("BOTTOM NAVFRAG 1");
                 break;
-                case R.id.navigation_2: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_LIST_2, false);
-                    System.out.println("U DRUGOM");
-                break;
-                case R.id.navigation_3: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_NEW_1, false);
-                    System.out.println("U TRECEM");
-                break;
+                case R.id.navigation_2: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_NEW_1, false);
+                    System.out.println("BOTTOM NAVFRAG 2");
+                    break;
+                case R.id.navigation_3: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_LIST_2, false);
+                    System.out.println("BOTTOM NAVFRAG 3");
+                    break;
                 case R.id.navigation_4: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_PROFILE_3, false);
-                    System.out.println("U CET");
-                break;
+                    System.out.println("BOTTOM NAVFRAG 4");
+                    break;
             }
             return true;
         });

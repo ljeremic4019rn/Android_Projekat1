@@ -31,22 +31,20 @@ public class BottomNavPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment;
         switch (position) {
             case FRAG_STAT_0: fragment = new StatisticsFragment();
-//                System.out.println("-----pozicija: " + position);
+                System.out.println("BOTTOM NAV -- ADAPTER 0");
+                break;
+            case FRAG_NEW_1: fragment = new NewTicketFragment();
+                System.out.println("BOTTOM NAV -- ADAPTER 1");
             break;
-            case FRAG_LIST_2: fragment = new NewTicketFragment();//todo ima bug da su frag list i frag new zamenjeni, okrenuo sam brojeve tako da radi, ali je cudno
-//                System.out.println("U DRUGOM");
-//                System.out.println("----pozicija: " + position);
-            break;
-            case FRAG_NEW_1: fragment = new TabsFragment();
-//                System.out.println("U TRECEM");
-//                System.out.println("----pozicija: " + position);
+            case FRAG_LIST_2: fragment = new TabsFragment();
+                System.out.println("BOTTOM NAV -- ADAPTER 2");
             break;
             case FRAG_PROFILE_3: fragment = new ProfileFragment();
-//                System.out.println("U CET");
-//                System.out.println("----pozicija: " + position);
+                System.out.println("BOTTOM NAV -- ADAPTER 3");
                 break;
             default: fragment = new StatisticsFragment();
-//                System.out.println("----pozicija: " + "U default");
+
+                System.out.println("BOTTOM NAV -- ADAPTER DEFAULT");
             break;
         }
         return fragment;

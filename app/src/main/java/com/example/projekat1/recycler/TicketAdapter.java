@@ -67,6 +67,8 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                     onItemClicked.accept(getBindingAdapterPosition());
                 }
             });
+
+
         }
 
         public void bind(Ticket ticket) {

@@ -32,14 +32,13 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment;
         switch (position) {
             case FRAG_STAT_0: fragment = new ToDoFragment();
-                System.out.println("-----pozicija: " + position);
+                System.out.println("TAB 0");
             break;
-            case FRAG_NEW_1: fragment = new InProgessFragment();//todo ima bug da su frag list i frag new zamenjeni, okrenuo sam brojeve tako da radi, ali je cudno
-//                System.out.println("U DRUGOM");
-                System.out.println("----pozicija: " + position);
+            case FRAG_NEW_1: fragment = new InProgessFragment();
+                System.out.println("TAB 1");
             break;
             default: fragment = new DoneFragment();
-                System.out.println("----pozicija: " + "U default");
+                System.out.println("TAB 2");
             break;
         }
         return fragment;

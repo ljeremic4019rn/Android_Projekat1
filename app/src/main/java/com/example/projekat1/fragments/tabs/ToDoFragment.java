@@ -18,6 +18,8 @@ import com.example.projekat1.recycler.TicketAdapter;
 import com.example.projekat1.recycler.TicketDiffItemCallback;
 import com.example.projekat1.viewModels.SharedViewModel;
 
+import java.util.Objects;
+
 
 public class ToDoFragment extends Fragment {
 
