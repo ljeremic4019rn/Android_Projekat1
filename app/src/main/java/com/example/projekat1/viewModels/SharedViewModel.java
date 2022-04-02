@@ -26,7 +26,7 @@ public class SharedViewModel extends ViewModel {
 
     public SharedViewModel() {
 
-        System.out.println("OVO SE POKRENULO");
+        if (ticketsTodoTempList.size() == 0)
         addTestTickets();//napunjeno sa filler ticketima
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);

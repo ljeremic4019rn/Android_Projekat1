@@ -13,6 +13,8 @@ import com.example.projekat1.R;
 import com.example.projekat1.viewPagers.BottomNavPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.sql.SQLOutput;
+
 public class BottomNavFragment extends Fragment {
 
     private ViewPager viewPager;
@@ -28,6 +30,12 @@ public class BottomNavFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
@@ -36,9 +44,10 @@ public class BottomNavFragment extends Fragment {
     @SuppressLint("NonConstantResourceId")
     private void init(View view){
         viewPager = view.findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(new BottomNavPagerAdapter(this.requireActivity().getSupportFragmentManager()));
 
-        ((BottomNavigationView)view.findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
+        ((BottomNavigationView) view.findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 // setCurrentItem metoda viewPager samo obavesti koji je Item trenutno aktivan i onda metoda getItem u adapteru setuje odredjeni fragment za tu poziciju
                 case R.id.navigation_1: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_STAT_0, false);

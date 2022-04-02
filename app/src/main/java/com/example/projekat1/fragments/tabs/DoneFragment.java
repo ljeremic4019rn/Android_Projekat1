@@ -68,7 +68,7 @@ public class DoneFragment extends Fragment {
     }
 
     private void initRecycler() {
-        ticketAdapter = new TicketAdapter( sharedViewModel,new TicketDiffItemCallback(), ticket -> {//todo ovde sam stavio SP, mozda je losa ideja
+        ticketAdapter = new TicketAdapter( sharedViewModel,new TicketDiffItemCallback(), ticket -> {
             Toast.makeText(getActivity(), ticket.getId() + "", Toast.LENGTH_SHORT).show();
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -19,6 +19,11 @@
     <string name="add_new_ticket">Add new ticket</string>
     <string name="search">Search...</string>
     <string name="edit_ticket">Edit ticket</string>
+    <string name="ticket_type">Ticket type</string>
+    <string name="priority">Priority</string>
+    <string name="estimation">Estimation</string>
+    <string name="logged_time">Logged time</string>
+    <string name="ticket_desc">Ticket desc.</string>
 
     <!--    SPINNER ELEMENTS    -->
     <string-array name="ticket_type">

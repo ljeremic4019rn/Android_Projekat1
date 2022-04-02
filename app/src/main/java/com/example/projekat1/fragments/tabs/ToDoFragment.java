@@ -10,11 +10,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekat1.R;
+import com.example.projekat1.activities.MainActivity;
+import com.example.projekat1.fragments.BottomNavFragment;
+import com.example.projekat1.fragments.EditTicketFragment;
+import com.example.projekat1.fragments.NewTicketFragment;
 import com.example.projekat1.recycler.TicketAdapter;
 import com.example.projekat1.recycler.TicketDiffItemCallback;
 import com.example.projekat1.viewModels.SharedViewModel;
@@ -66,8 +71,23 @@ public class ToDoFragment extends Fragment {
     }
 
     private void initRecycler() {
-        ticketAdapter = new TicketAdapter(sharedViewModel ,new TicketDiffItemCallback(), ticket -> {//todo ovde sam stavio SP, mozda je losa ideja
-            Toast.makeText(getActivity(), ticket.getId() + "", Toast.LENGTH_SHORT).show();
+//        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();//todo zasto ne radi ako se koristi child, a radi sa parentovim
+        FragmentTransaction transaction = this.getActivity().getSupportFragmentManager().beginTransaction();
+        BottomNavFragment bottomNavFragment = (BottomNavFragment)  this.getActivity().getSupportFragmentManager().findFragmentByTag(MainActivity.MAIN_FRAGMENT);
+
+        ticketAdapter = new TicketAdapter(sharedViewModel, new TicketDiffItemCallback(), ticket -> {
+//            Toast.makeText(getActivity(), ticket.getId() + "asdfasdf", Toast.LENGTH_SHORT).show();
+            transaction.replace(R.id.mainFragContainer, new EditTicketFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+//            Intent intent = new Intent(view.getContext(), SingleFragmentDisplay.class);
+//            startActivity(intent);
+//
+//            transaction.add(R.id.singleFratView, new EditTicketFragment());
+//            transaction.commit();
+
+
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(ticketAdapter);

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/edit_fragment">
 
     <TextView
         android:id="@+id/textView2"
@@ -12,7 +13,7 @@
         android:text="@string/edit_ticket"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/prioritySpinner"
+        app:layout_constraintBottom_toTopOf="@+id/prioritySpinnerEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,17 +21,17 @@
         app:layout_constraintVertical_bias="0.300" />
 
     <Spinner
-        android:id="@+id/typeSpinner"
-        android:layout_width="150dp"
+        android:id="@+id/typeSpinnerEdit"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="196dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/estimatedET"
+        android:id="@+id/estimatedETEdit"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -40,57 +41,60 @@
         android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toEndOf="@+id/prioritySpinner"
+        app:layout_constraintStart_toEndOf="@+id/prioritySpinnerEdit"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/prioritySpinner"
-        android:layout_width="150dp"
+        android:id="@+id/prioritySpinnerEdit"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="196dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.22"
-        app:layout_constraintStart_toEndOf="@+id/typeSpinner"
+        app:layout_constraintStart_toEndOf="@+id/typeSpinnerEdit"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/titleET"
+        android:id="@+id/titleETEdit"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="textMultiLine"
+        android:hint="@string/ticket_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/typeSpinnerEdit" />
+
+
 
     <EditText
-        android:id="@+id/descriptionET"
+        android:id="@+id/descriptionETEdit"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="textMultiLine"
+        android:hint="@string/ticket_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleET" />
+        app:layout_constraintTop_toBottomOf="@+id/titleETEdit" />
 
     <Button
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/editButton"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="Button"
+        android:text="@string/edit_ticket"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionET"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionETEdit"
         app:layout_constraintVertical_bias="0.983" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

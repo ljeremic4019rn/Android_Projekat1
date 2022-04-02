@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.example.projekat1.R;
+import com.example.projekat1.fragments.tabs.TabsFragment;
 import com.example.projekat1.models.Ticket;
 import com.example.projekat1.models.User;
 import com.example.projekat1.fragments.BottomNavFragment;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TODO = "todo";
     public static final String IN_PROGRESS = "inprogress";
     public static final String DONE = "done";
+    public static final String MAIN_FRAGMENT = "mainFragment";
 
     private boolean loggedIn;
     private String logged;
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkLogin(){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (loggedIn){
-            transaction.add(R.id.mainFragContainer, new BottomNavFragment());//todo change to main fragment
+            transaction.add(R.id.mainFragContainer, new BottomNavFragment(), MAIN_FRAGMENT);//todo change to main fragment
         }
         else {
             transaction.add(R.id.mainFragContainer, new LogInFragment());

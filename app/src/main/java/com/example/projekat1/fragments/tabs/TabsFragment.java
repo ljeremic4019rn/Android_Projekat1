@@ -36,6 +36,7 @@ public class TabsFragment extends Fragment {
 
     private void init(View view){
         viewPager = (ViewPager) view.findViewById(R.id.viewPagerTabs);//todo profile dugme ima bug da kad se klikne ubije tab na kome se trenutno nalazis
+        viewPager.setOffscreenPageLimit(3);
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
 
         viewPager.setAdapter(new TabPagerAdapter(this.requireActivity().getSupportFragmentManager()));

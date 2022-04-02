@@ -53,7 +53,7 @@ public class NewTicketFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
 
-
+        //stavljanje stvari u spinnere
         ArrayAdapter<CharSequence> priorityAdapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.priority, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this.getActivity(),
@@ -71,7 +71,6 @@ public class NewTicketFragment extends Fragment {
     }
 
     private void initListeners(){
-
             addButton.setOnClickListener(v -> {
                 System.out.println("KURACCC");
                 if(checkIfAllSelected()){
