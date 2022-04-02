@@ -19,9 +19,9 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<List<Ticket>> ticketsDoneLiveData = new MutableLiveData<>();
 
 
-    private ArrayList<Ticket> ticketsTodoTempList = new ArrayList<>();
-    private ArrayList<Ticket> ticketsInProgressTempList = new ArrayList<>();
-    private ArrayList<Ticket> ticketsDoneTempList = new ArrayList<>();
+    private final ArrayList<Ticket> ticketsTodoTempList = new ArrayList<>();
+    private final ArrayList<Ticket> ticketsInProgressTempList = new ArrayList<>();
+    private final ArrayList<Ticket> ticketsDoneTempList = new ArrayList<>();
 
 
     public SharedViewModel() {
@@ -48,9 +48,23 @@ public class SharedViewModel extends ViewModel {
         return ticketsDoneLiveData;
     }
 
-    public void filterTickets(String filter) {//todo popravi
-        List<Ticket> filteredList = ticketsTodoTempList.stream().filter(ticket -> ticket.getTitle().toLowerCase().startsWith(filter.toLowerCase())).collect(Collectors.toList());
+    public void filterTodoTickets(String filter) {
+        List<Ticket> filteredList = ticketsTodoTempList.stream().filter(
+                ticket -> ticket.getTitle().toLowerCase().contains(filter.toLowerCase())
+                || ticket.getDescription().toLowerCase().contains(filter.toLowerCase())).collect(Collectors.toList());
         ticketsTodoLiveData.setValue(filteredList);
+    }
+    public void filterProgressTickets(String filter) {
+        List<Ticket> filteredList = ticketsInProgressTempList.stream().filter(
+                ticket -> ticket.getTitle().toLowerCase().contains(filter.toLowerCase())
+                        || ticket.getDescription().toLowerCase().contains(filter.toLowerCase())).collect(Collectors.toList());
+        ticketsInProgressLiveData.setValue(filteredList);
+    }
+    public void filterDoneTickets(String filter) {
+        List<Ticket> filteredList = ticketsDoneTempList.stream().filter(
+                ticket -> ticket.getTitle().toLowerCase().contains(filter.toLowerCase())
+                        || ticket.getDescription().toLowerCase().contains(filter.toLowerCase())).collect(Collectors.toList());
+        ticketsDoneLiveData.setValue(filteredList);
     }
 
 
@@ -123,9 +137,9 @@ public class SharedViewModel extends ViewModel {
 
         Ticket ticket6 = new Ticket("Bug","Low",5,"Test ticket DONE" + counter++, "Ovo je test ticket za bug");
         Ticket ticket7 = new Ticket("Enhancement","Medium",5,"Test ticket DONE" + counter++, "Ovo je test ticket za Enhancement");
+        ticket6.setProgress(MainActivity.DONE);
         ticket7.setProgress(MainActivity.DONE);
-        ticket7.setProgress(MainActivity.DONE);
-        ticketsDoneTempList.add(ticket7);
+        ticketsDoneTempList.add(ticket6);
         ticketsDoneTempList.add(ticket7);
     }
 

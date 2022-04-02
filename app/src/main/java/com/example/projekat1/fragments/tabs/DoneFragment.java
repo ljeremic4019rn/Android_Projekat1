@@ -3,7 +3,10 @@ package com.example.projekat1.fragments.tabs;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,7 +26,7 @@ public class DoneFragment extends Fragment {
     private RecyclerView recyclerView;
     private SharedViewModel sharedViewModel;
     private TicketAdapter ticketAdapter;
-
+    private EditText searchDoneTickets;
 
     public DoneFragment() {
         super(R.layout.fragment_done);
@@ -40,11 +43,27 @@ public class DoneFragment extends Fragment {
 
     private void initView(View view){
         recyclerView = view.findViewById(R.id.listRvDone);
+        searchDoneTickets = view.findViewById(R.id.searchDoneTickets);
     }
 
     private void initObservers() {
         sharedViewModel.getTicketsDoneLiveData().observe(getViewLifecycleOwner(), tickets -> {
             ticketAdapter.submitList(tickets);
+        });
+
+        searchDoneTickets.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                sharedViewModel.filterDoneTickets(s.toString());
+            }
         });
     }
 
