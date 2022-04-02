@@ -52,29 +52,58 @@ public class StatisticsFragment extends Fragment {
         doneNum1 = view.findViewById(R.id.numDone1);
         doneNum2 = view.findViewById(R.id.numDone2);
         doneNum3 = view.findViewById(R.id.numDone3);
-
-
     }
 
-
     private void setStatistics(){
-        List<Ticket> todoList = sharedViewModel.getTicketsTodoLiveData().getValue();
-        List<Ticket> progressList = sharedViewModel.getTicketsInProgressLiveData().getValue();
-        List<Ticket> doneList = sharedViewModel.getTicketsDoneLiveData().getValue();
-//todo ovo ima problema
+        sharedViewModel.getTicketsTodoLiveData().observe(getViewLifecycleOwner(), tickets -> {
+            int todoBug = 0;
+            int todoEnhancement = 0;
 
-//        sharedViewModel.getTicketsTodoLiveData().observe(getViewLifecycleOwner(), tickets -> {
-//            System.out.println("kurac " + tickets.size());
-//        });
+            for (Ticket t: tickets) {
+                if (t.getType().equals("Bug")){
+                    todoBug++;
+                }
+                else todoEnhancement++;
+            }
 
+            todoNum1.setText(String.valueOf(tickets.size()));
+            todoNum2.setText(String.valueOf(todoBug));
+            todoNum3.setText(String.valueOf(todoEnhancement));
 
-//        int test = todoList.size();
+        });
 
-//        progressNum1.setText(progressList.size());
-//        doneNum1.setText(doneList.size());
+        sharedViewModel.getTicketsInProgressLiveData().observe(getViewLifecycleOwner(), tickets -> {
+            int progressBug = 0;
+            int progressEnhancement = 0;
 
+            for (Ticket t: tickets) {
+                if (t.getType().equals("Bug")){
+                    progressBug++;
+                }
+                else progressEnhancement++;
+            }
 
+            progressNum1.setText(String.valueOf(tickets.size()));
+            progressNum2.setText(String.valueOf(progressBug));
+            progressNum3.setText(String.valueOf(progressEnhancement));
 
+        });
+
+        sharedViewModel.getTicketsDoneLiveData().observe(getViewLifecycleOwner(), tickets -> {
+            int doneBug = 0;
+            int doneEnhancement = 0;
+
+            for (Ticket t: tickets) {
+                if (t.getType().equals("Bug")){
+                    doneBug++;
+                }
+                else doneEnhancement++;
+            }
+
+            doneNum1.setText(String.valueOf(tickets.size()));
+            doneNum2.setText(String.valueOf(doneBug));
+            doneNum3.setText(String.valueOf(doneEnhancement));
+        });
     }
 
 }

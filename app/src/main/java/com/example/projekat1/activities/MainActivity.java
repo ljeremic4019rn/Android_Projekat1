@@ -3,6 +3,7 @@ package com.example.projekat1.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import com.example.projekat1.models.Ticket;
 import com.example.projekat1.models.User;
 import com.example.projekat1.fragments.BottomNavFragment;
 import com.example.projekat1.fragments.LogInFragment;
+import com.example.projekat1.viewModels.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

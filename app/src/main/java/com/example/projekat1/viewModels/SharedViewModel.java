@@ -120,7 +120,7 @@ public class SharedViewModel extends ViewModel {
     }
 
     //samo za testiranje dodati tiketi
-    private void addTestTickets(){
+    public void addTestTickets(){
         for (int i = 0; i < 5; i++) {
             Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug");
             ticket.setId(counter++);
