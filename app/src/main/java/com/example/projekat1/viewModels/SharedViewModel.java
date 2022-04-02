@@ -36,6 +36,7 @@ public class SharedViewModel extends ViewModel {
         ticketsDoneLiveData.setValue(listToSubmit3);
     }
 
+    //getteri
     public MutableLiveData<List<Ticket>> getTicketsTodoLiveData() {
         return ticketsTodoLiveData;
     }
@@ -48,6 +49,7 @@ public class SharedViewModel extends ViewModel {
         return ticketsDoneLiveData;
     }
 
+    //search filteri
     public void filterTodoTickets(String filter) {
         List<Ticket> filteredList = ticketsTodoTempList.stream().filter(
                 ticket -> ticket.getTitle().toLowerCase().contains(filter.toLowerCase())
@@ -68,6 +70,7 @@ public class SharedViewModel extends ViewModel {
     }
 
 
+    //dodatvanje / brisanje / pomeranje tiketa iz jednog taba u drugi
     public void addTodoTicket(Ticket ticket) {//good
         ticket.setId(counter++);
         ticketsTodoTempList.add(ticket);
@@ -115,7 +118,7 @@ public class SharedViewModel extends ViewModel {
         removeProgressTicket(ticket);
     }
 
-    //samo za testiranje dodati ticketi
+    //samo za testiranje dodati tiketi
     private void addTestTickets(){
         for (int i = 0; i < 10; i++) {
             Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug");
