@@ -6,10 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.projekat1.fragments.NewTicketFragment;
-import com.example.projekat1.fragments.PlaceHolderFragment;
 import com.example.projekat1.fragments.ProfileFragment;
 import com.example.projekat1.fragments.StatisticsFragment;
-import com.example.projekat1.fragments.TabsFragment;
+import com.example.projekat1.fragments.tabs.TabsFragment;
 
 
 public class BottomNavPagerAdapter extends FragmentPagerAdapter {

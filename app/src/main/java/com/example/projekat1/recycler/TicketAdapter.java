@@ -1,4 +1,4 @@
-package com.example.projekat1.recycler.adapter;
+package com.example.projekat1.recycler;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,11 +26,13 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
 
     private final Consumer<Ticket> onTicketClicked;
     public static SharedPreferences sharedPreferences;
+    public static SharedViewModel sharedViewModel;
 
-    public TicketAdapter(SharedPreferences sharedPreferences, @NonNull DiffUtil.ItemCallback<Ticket> diffCallback, Consumer<Ticket> onTicketClicked) {
+    public TicketAdapter(SharedPreferences sharedPreferences, SharedViewModel sharedViewModel, @NonNull DiffUtil.ItemCallback<Ticket> diffCallback, Consumer<Ticket> onTicketClicked) {
         super(diffCallback);
         this.onTicketClicked = onTicketClicked;
         TicketAdapter.sharedPreferences = sharedPreferences;
+        TicketAdapter.sharedViewModel = sharedViewModel;
     }
 
     @NonNull
@@ -71,8 +72,6 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
             ImageButton iTopButton = itemView.findViewById(R.id.ticketTopButton);
             ImageButton iButtonBottom = itemView.findViewById(R.id.ticketBottomButton);
 
-//            SharedViewModel sharedViewModel  = new ViewModelProvider(GET).get(SharedViewModel.class); //todo figure this out!
-
             boolean isAdmin = false;
 
             ((TextView) itemView.findViewById(R.id.ticketTitleListItem)).setText(ticket.getTitle());
@@ -87,24 +86,41 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
             else imageView.setImageResource(R.drawable.ic_engance);
 
 
-
+            //za to-do recycler
             if (ticket.getProgress().equals(MainActivity.TODO)){
                 iTopButton.setImageResource(R.drawable.ic_arrow_right_24);
+
+                iTopButton.setOnClickListener(tb ->{
+                    //todo move ticket to in progress tab
+                });
+
                 if(isAdmin){
                     iButtonBottom.setImageResource(R.drawable.ic_remove);//ako je admin ima remove
-                    iButtonBottom.setOnClickListener(t ->{
-                        System.out.println("KURAC " );//todo get ticket id, and remove it from list FIGURE OUT HOW TO GET SHARED VIEW MODEL
-
-                        //todo set remove item from list
+                    iButtonBottom.setOnClickListener(bb ->{
+                        System.out.println("KURAC ");
+                        sharedViewModel.removeTicket(ticket.getId());
                     });
                 }
                 else iButtonBottom.setVisibility(View.INVISIBLE);//ako nije admin sakri dugme
+
             }
+            //za in progress recycler
             else if (ticket.getProgress().equals(MainActivity.IN_PROGRESS)){
-                //todo make after in progress recyclable
+                iTopButton.setImageResource(R.drawable.ic_arrow_right_24);
+                iButtonBottom.setImageResource(R.drawable.ic_arrow_left_24);
+
+                iTopButton.setOnClickListener(tb ->{
+
+                });
+
+                iButtonBottom.setOnClickListener(bb ->{
+
+                });
             }
+            //za done recycler
             else{
-                //todo make after done recyclable
+                iTopButton.setVisibility(View.INVISIBLE);
+                iButtonBottom.setVisibility(View.INVISIBLE);
             }
 
         }

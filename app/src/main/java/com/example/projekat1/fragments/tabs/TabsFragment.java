@@ -1,4 +1,4 @@
-package com.example.projekat1.fragments;
+package com.example.projekat1.fragments.tabs;
 
 import android.os.Bundle;
 import android.view.View;

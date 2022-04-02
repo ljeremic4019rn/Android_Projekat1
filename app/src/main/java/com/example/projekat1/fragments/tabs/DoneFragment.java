@@ -1,4 +1,4 @@
-package com.example.projekat1.fragments;
+package com.example.projekat1.fragments.tabs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,19 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekat1.R;
-import com.example.projekat1.recycler.adapter.TicketAdapter;
-import com.example.projekat1.recycler.differ.TicketDiffItemCallback;
+import com.example.projekat1.recycler.TicketAdapter;
+import com.example.projekat1.recycler.TicketDiffItemCallback;
 import com.example.projekat1.viewModels.SharedViewModel;
 
-
-public class ToDoFragment extends Fragment {
+public class DoneFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private SharedViewModel sharedViewModel;
     private TicketAdapter ticketAdapter;
 
-    public ToDoFragment() {
-        super(R.layout.fragment_todo);
+
+    public DoneFragment() {
+        super(R.layout.fragment_done);
     }
 
     @Override
@@ -39,11 +39,11 @@ public class ToDoFragment extends Fragment {
     }
 
     private void initView(View view){
-        recyclerView = view.findViewById(R.id.listRv);
+        recyclerView = view.findViewById(R.id.listRvDone);
     }
 
     private void initObservers() {
-        sharedViewModel.getTicketsLiveData().observe(getViewLifecycleOwner(), tickets -> {
+        sharedViewModel.getTicketsDoneLiveData().observe(getViewLifecycleOwner(), tickets -> {
             ticketAdapter.submitList(tickets);
         });
     }
@@ -51,8 +51,7 @@ public class ToDoFragment extends Fragment {
     private void initRecycler() {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getActivity().getPackageName(), Context.MODE_PRIVATE);
 
-
-        ticketAdapter = new TicketAdapter(sharedPreferences, new TicketDiffItemCallback(), ticket -> {//todo ovde sam stavio SP, mozda je losa ideja
+        ticketAdapter = new TicketAdapter(sharedPreferences, sharedViewModel,new TicketDiffItemCallback(), ticket -> {//todo ovde sam stavio SP, mozda je losa ideja
             Toast.makeText(getActivity(), ticket.getId() + "", Toast.LENGTH_SHORT).show();
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

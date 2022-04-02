@@ -1,4 +1,4 @@
-package com.example.projekat1.recycler.differ;
+package com.example.projekat1.recycler;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
