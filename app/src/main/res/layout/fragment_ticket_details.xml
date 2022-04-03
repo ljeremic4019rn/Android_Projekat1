@@ -45,7 +45,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:text="@string/priority"
         android:textAlignment="viewStart"
         android:textSize="20sp"
@@ -58,7 +58,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="@string/estimation"
         android:textAlignment="viewStart"
         android:textSize="20sp"
@@ -71,7 +71,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="@string/logged_time"
         android:textAlignment="viewStart"
         android:textSize="20sp"
@@ -121,7 +121,7 @@
         android:id="@+id/tdEstimation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,17 +130,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tdPriority" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/tdLoggedButton"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tdEstimation" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tdDescription"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_marginTop="316dp"

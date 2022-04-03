@@ -1,12 +1,23 @@
 package com.example.projekat1.fragments.tabs;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,12 +28,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekat1.R;
 import com.example.projekat1.activities.MainActivity;
+import com.example.projekat1.activities.SingleFragmentDisplay;
 import com.example.projekat1.fragments.BottomNavFragment;
 import com.example.projekat1.fragments.EditTicketFragment;
 import com.example.projekat1.fragments.NewTicketFragment;
+import com.example.projekat1.models.Ticket;
 import com.example.projekat1.recycler.TicketAdapter;
 import com.example.projekat1.recycler.TicketDiffItemCallback;
 import com.example.projekat1.viewModels.SharedViewModel;
+
+import java.util.Objects;
 
 
 public class ToDoFragment extends Fragment {
@@ -30,6 +45,9 @@ public class ToDoFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private TicketAdapter ticketAdapter;
     private EditText searchTodoTickets;
+    public static final int REQUEST_CODE = 1;
+
+
 
     public ToDoFragment() {
         super(R.layout.fragment_todo);
@@ -41,7 +59,7 @@ public class ToDoFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         initView(view);
         initObservers();
-        initRecycler();
+        initRecycler(view);
     }
 
     private void initView(View view){
@@ -70,24 +88,30 @@ public class ToDoFragment extends Fragment {
         });
     }
 
-    private void initRecycler() {
-//        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();//todo zasto ne radi ako se koristi child, a radi sa parentovim
-        FragmentTransaction transaction = this.getActivity().getSupportFragmentManager().beginTransaction();
-        BottomNavFragment bottomNavFragment = (BottomNavFragment)  this.getActivity().getSupportFragmentManager().findFragmentByTag(MainActivity.MAIN_FRAGMENT);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == REQUEST_CODE) {
+                SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(requireActivity().getPackageName(), Context.MODE_PRIVATE);
+                sharedViewModel.updateTicket(sharedPreferences.getString(MainActivity.MAIN_FRAGMENT,""));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void initRecycler(View view) {
+        BottomNavFragment bottomNavFragment = (BottomNavFragment)  this.requireActivity().getSupportFragmentManager().findFragmentByTag(MainActivity.MAIN_FRAGMENT);
         ticketAdapter = new TicketAdapter(sharedViewModel, new TicketDiffItemCallback(), ticket -> {
-//            Toast.makeText(getActivity(), ticket.getId() + "asdfasdf", Toast.LENGTH_SHORT).show();
-            transaction.replace(R.id.mainFragContainer, new EditTicketFragment());
-            transaction.addToBackStack(null);
-            transaction.commit();
-
-//            Intent intent = new Intent(view.getContext(), SingleFragmentDisplay.class);
-//            startActivity(intent);
-//
-//            transaction.add(R.id.singleFratView, new EditTicketFragment());
+//            Toast.makeText(getActivity(), ticket.getId() + "asdfasdf", Toast.LENGTH_SHORT).show();//todo pokusaj da ovo provalis kako se radi / pitaj asistenta
+//            transaction.replace(R.id.mainFragContainer, new EditTicketFragment());
+//            transaction.addToBackStack(null);
 //            transaction.commit();
-
-
+            Intent intent = new Intent(view.getContext(),  SingleFragmentDisplay.class);
+            intent.putExtra("type", "details");
+            intent.putExtra("ticket", ticket);
+            startActivityForResult(intent , REQUEST_CODE);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(ticketAdapter);

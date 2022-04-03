@@ -1,5 +1,12 @@
 package com.example.projekat1.viewModels;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -13,11 +20,11 @@ import java.util.stream.Collectors;
 public class SharedViewModel extends ViewModel {
 
     public static int counter = 1;
+    private static boolean fill = true;
 
     private final MutableLiveData<List<Ticket>> ticketsTodoLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Ticket>> ticketsInProgressLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Ticket>> ticketsDoneLiveData = new MutableLiveData<>();
-
 
     private final ArrayList<Ticket> ticketsTodoTempList = new ArrayList<>();
     private final ArrayList<Ticket> ticketsInProgressTempList = new ArrayList<>();
@@ -25,9 +32,10 @@ public class SharedViewModel extends ViewModel {
 
 
     public SharedViewModel() {
-
-        if (ticketsTodoTempList.size() == 0)
-        addTestTickets();//napunjeno sa filler ticketima
+        if (fill){
+            addTestTickets();//napunjeno sa filler ticketima
+            fill = false;
+        }
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
@@ -74,6 +82,7 @@ public class SharedViewModel extends ViewModel {
     //dodatvanje / brisanje / pomeranje tiketa iz jednog taba u drugi
     public void addTodoTicket(Ticket ticket) {//good
         ticket.setId(counter++);
+        System.out.println("ccccc " + ticketsTodoTempList.size());
         ticketsTodoTempList.add(ticket);
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
@@ -119,14 +128,51 @@ public class SharedViewModel extends ViewModel {
         removeProgressTicket(ticket);
     }
 
+/*
+* 0 - id
+* 1 - type
+* 2 - priority
+* 3 - estimated
+* 4 - title
+* 5 - description
+* 6 - progress
+* 7 - loggedTime;
+*/
+    public void updateTicket(String ticketString){
+        String [] ticketSplit = ticketString.split("-");
+        Ticket ticket;
+
+        if(ticketSplit[6].equals(MainActivity.TODO))
+            ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsTodoTempList);
+        else if (ticketSplit[6].equals(MainActivity.IN_PROGRESS))
+            ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsInProgressTempList);
+        else  ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsDoneTempList);
+
+        if(ticket != null){
+            ticket.setType(ticketSplit[1]);
+            ticket.setPriority(ticketSplit[2]);
+            ticket.setEstimated(Integer.parseInt(ticketSplit[3]));
+            ticket.setTitle(ticketSplit[4]);
+            ticket.setDescription(ticketSplit[5]);
+            ticket.setLoggedTime(Integer.parseInt(ticketSplit[7]));
+        }
+    }
+
+    private Ticket findTicket(int id, List<Ticket> list){
+        for (Ticket t: list) {
+            if(t.getId() == id) return t;
+        }
+        return null;
+    }
+
     //samo za testiranje dodati tiketi
     public void addTestTickets(){
         for (int i = 0; i < 5; i++) {
-            Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug");
+            Ticket ticket = new Ticket("Bug","Low",5,"Test ticket bug" + counter, "Ovo je test ticket za bug, treba da bude dovoljno dugacak da stane u dva reda");
             ticket.setId(counter++);
             ticketsTodoTempList.add(ticket);
 
-            Ticket ticket2 = new Ticket("Enhancement","Medium",5,"Test ticket " + counter, "Ovo je test ticket za enhancement");
+            Ticket ticket2 = new Ticket("Enhancement","Medium",5,"Test ticket " + counter, "Ovo je test ticket za enhancement, treba dosta testirati da ne bi doslo do gresaka");
             ticket2.setId(counter++);
             ticketsTodoTempList.add(ticket2);
         }
@@ -153,6 +199,5 @@ public class SharedViewModel extends ViewModel {
         ticketsDoneTempList.add(ticket6);
         ticketsDoneTempList.add(ticket7);
     }
-
 }
 

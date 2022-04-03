@@ -39,7 +39,7 @@ public class EditTicketFragment extends Fragment {
         initView(view);
         initOvservers();
 
-        System.out.println("U TICKETU " + ticket.getTitle());
+//        System.out.println("U TICKETU " + ticket.getTitle());
     }
 
     private void initView(View view){

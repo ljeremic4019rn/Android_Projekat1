@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
         users.put("admin_marko", new User("admin_marko","1234","marko@gmail.com"));
         users.put("luka", new User("luka","1234","luka@gmail.com"));
         users.put("marko", new User("marko","1234","marko@gmail.com"));
@@ -63,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
 //        transaction.commit();
 
     }
-
-
 
     private void checkLogin(){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

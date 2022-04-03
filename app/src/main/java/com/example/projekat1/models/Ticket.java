@@ -1,6 +1,11 @@
 package com.example.projekat1.models;
 
-public class Ticket {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Ticket implements Serializable {
 
     private int id;
     private int loggedTime;
@@ -9,7 +14,7 @@ public class Ticket {
     private String priority;
     private String title;
     private String description;
-    private String progress;
+    private String progress;//sluzi nam da znamo u kom se tabu nalazi
 
     public Ticket(String type, String priority, int estimated, String title, String description) {
         this.type = type;
@@ -21,6 +26,10 @@ public class Ticket {
         this.loggedTime = 0;
     }
 
+    @Override
+    public String toString() {
+        return id + "-" + type + "-" + priority + "-" + estimated + "-" + title + "-" + description + "-" + progress + "-" + loggedTime;
+    }
 
     public int getId() {
         return id;
@@ -85,4 +94,5 @@ public class Ticket {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

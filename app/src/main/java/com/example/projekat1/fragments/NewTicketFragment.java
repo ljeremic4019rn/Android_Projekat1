@@ -97,15 +97,11 @@ public class NewTicketFragment extends Fragment {
     private void showErrorToast(){
         Toast toast = Toast.makeText(this.getActivity(), "All fields must be filled in to create ticket", Toast.LENGTH_SHORT);
         View view = toast.getView();
-
         //Gets the actual oval background of the Toast then sets the colour filter
         view.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-
         //Gets the TextView from the Toast so it can be editted
         TextView text = view.findViewById(android.R.id.message);
         text.setTextColor(Color.WHITE);
-
         toast.show();
     }
-
 }

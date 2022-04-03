@@ -1,6 +1,7 @@
 package com.example.projekat1.fragments.tabs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekat1.R;
+import com.example.projekat1.activities.MainActivity;
+import com.example.projekat1.activities.SingleFragmentDisplay;
+import com.example.projekat1.fragments.BottomNavFragment;
 import com.example.projekat1.recycler.TicketAdapter;
 import com.example.projekat1.recycler.TicketDiffItemCallback;
 import com.example.projekat1.viewModels.SharedViewModel;
@@ -27,6 +31,8 @@ public class DoneFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private TicketAdapter ticketAdapter;
     private EditText searchDoneTickets;
+    public static final int REQUEST_CODE = 1;
+
 
     public DoneFragment() {
         super(R.layout.fragment_done);
@@ -38,7 +44,7 @@ public class DoneFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         initView(view);
         initObservers();
-        initRecycler();
+        initRecycler(view);
     }
 
     private void initView(View view){
@@ -67,9 +73,30 @@ public class DoneFragment extends Fragment {
         });
     }
 
-    private void initRecycler() {
-        ticketAdapter = new TicketAdapter( sharedViewModel,new TicketDiffItemCallback(), ticket -> {
-            Toast.makeText(getActivity(), ticket.getId() + "", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == REQUEST_CODE) {
+                SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(requireActivity().getPackageName(), Context.MODE_PRIVATE);
+                sharedViewModel.updateTicket(sharedPreferences.getString(MainActivity.MAIN_FRAGMENT,""));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initRecycler(View view) {
+        BottomNavFragment bottomNavFragment = (BottomNavFragment)  this.requireActivity().getSupportFragmentManager().findFragmentByTag(MainActivity.MAIN_FRAGMENT);
+        ticketAdapter = new TicketAdapter(sharedViewModel, new TicketDiffItemCallback(), ticket -> {
+//            Toast.makeText(getActivity(), ticket.getId() + "asdfasdf", Toast.LENGTH_SHORT).show();//todo pokusaj da ovo provalis kako se radi / pitaj asistenta
+//            transaction.replace(R.id.mainFragContainer, new EditTicketFragment());
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+            Intent intent = new Intent(view.getContext(),  SingleFragmentDisplay.class);
+            intent.putExtra("type", "details");
+            intent.putExtra("ticket", ticket);
+            startActivityForResult(intent , REQUEST_CODE);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(ticketAdapter);

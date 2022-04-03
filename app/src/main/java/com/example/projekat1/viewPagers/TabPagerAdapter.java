@@ -32,13 +32,13 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment;
         switch (position) {
             case FRAG_STAT_0: fragment = new ToDoFragment();
-                System.out.println("TAB 0");
+//                System.out.println("TAB 0");
             break;
             case FRAG_NEW_1: fragment = new InProgessFragment();
-                System.out.println("TAB 1");
+//                System.out.println("TAB 1");
             break;
             default: fragment = new DoneFragment();
-                System.out.println("TAB 2");
+//                System.out.println("TAB 2");
             break;
         }
         return fragment;

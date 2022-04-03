@@ -31,22 +31,23 @@ public class BottomNavPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment;
         switch (position) {
             case FRAG_STAT_0: fragment = new StatisticsFragment();
-                System.out.println("BOTTOM NAV -- ADAPTER 0");
+//                System.out.println("BOTTOM NAV -- ADAPTER 0");
                 break;
             case FRAG_NEW_1: fragment = new NewTicketFragment();//FRAG_NEW_1
-                System.out.println("BOTTOM NAV -- ADAPTER 1");
+//                System.out.println("BOTTOM NAV -- ADAPTER 1");
             break;
             case FRAG_LIST_2: fragment = new TabsFragment();//FRAG_LIST_2
-                System.out.println("BOTTOM NAV -- ADAPTER 2");
+//                System.out.println("BOTTOM NAV -- ADAPTER 2");
             break;
             case FRAG_PROFILE_3: fragment = new ProfileFragment();
-                System.out.println("BOTTOM NAV -- ADAPTER 3");
+//                System.out.println("BOTTOM NAV -- ADAPTER 3");
                 break;
             default: fragment = null;
-                System.out.println("BOTTOM NAV -- ADAPTER DEFAULT");
+//                System.out.println("BOTTOM NAV -- ADAPTER DEFAULT");
             break;
         }
         return fragment;
+
     }
 
     @Override

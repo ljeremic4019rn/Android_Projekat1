@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.projekat1.R;
@@ -44,23 +45,23 @@ public class BottomNavFragment extends Fragment {
     @SuppressLint("NonConstantResourceId")
     private void init(View view){
         viewPager = view.findViewById(R.id.viewPager);
-        viewPager.setOffscreenPageLimit(4);
+//        viewPager.setOffscreenPageLimit(8);
         viewPager.setAdapter(new BottomNavPagerAdapter(this.requireActivity().getSupportFragmentManager()));
 
         ((BottomNavigationView) view.findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 // setCurrentItem metoda viewPager samo obavesti koji je Item trenutno aktivan i onda metoda getItem u adapteru setuje odredjeni fragment za tu poziciju
                 case R.id.navigation_1: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_STAT_0, false);
-                    System.out.println("BOTTOM NAVFRAG 1");
+//                    System.out.println("BOTTOM NAVFRAG 1");
                 break;
                 case R.id.navigation_2: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_NEW_1, false);
-                    System.out.println("BOTTOM NAVFRAG 2");
+//                    System.out.println("BOTTOM NAVFRAG 2");
                     break;
                 case R.id.navigation_3: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_LIST_2, false);
-                    System.out.println("BOTTOM NAVFRAG 3");
+//                    System.out.println("BOTTOM NAVFRAG 3");
                     break;
                 case R.id.navigation_4: viewPager.setCurrentItem(BottomNavPagerAdapter.FRAG_PROFILE_3, false);
-                    System.out.println("BOTTOM NAVFRAG 4");
+//                    System.out.println("BOTTOM NAVFRAG 4");
                     break;
             }
             return true;
