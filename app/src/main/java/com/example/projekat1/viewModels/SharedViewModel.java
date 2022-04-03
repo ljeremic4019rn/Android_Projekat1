@@ -1,5 +1,6 @@
 package com.example.projekat1.viewModels;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Parcelable;
@@ -11,6 +12,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.projekat1.activities.MainActivity;
+import com.example.projekat1.fragments.tabs.DoneFragment;
+import com.example.projekat1.fragments.tabs.InProgessFragment;
+import com.example.projekat1.fragments.tabs.ToDoFragment;
 import com.example.projekat1.models.Ticket;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,25 +141,33 @@ public class SharedViewModel extends ViewModel {
 * 6 - progress
 * 7 - loggedTime;
 */
+    @SuppressLint("NotifyDataSetChanged")
     public void updateTicket(String ticketString){
         String [] ticketSplit = ticketString.split("-");
         ArrayList<Ticket> listToSubmit;
         Ticket ticket;
 
-        if(ticketSplit[6].equals(MainActivity.TODO)){//todo NADJI NACIN DA PROUZROKUJES UPDATE
+        if(ticketSplit[6].equals(MainActivity.TODO)){
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsTodoTempList);
             listToSubmit = new ArrayList<>(ticketsTodoTempList);
             ticketsTodoLiveData.setValue(listToSubmit);
+
+            ToDoFragment.ticketAdapter.notifyDataSetChanged();//updateujemo listu
         }
         else if (ticketSplit[6].equals(MainActivity.IN_PROGRESS)){
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsInProgressTempList);
             listToSubmit = new ArrayList<>(ticketsInProgressTempList);
             ticketsInProgressLiveData.setValue(listToSubmit);
+
+            InProgessFragment.ticketAdapter.notifyDataSetChanged();
+
         }
         else  {
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsDoneTempList);
             listToSubmit = new ArrayList<>(ticketsDoneTempList);
             ticketsDoneLiveData.setValue(listToSubmit);
+
+            DoneFragment.ticketAdapter.notifyDataSetChanged();
         }
 
         if(ticket != null){

@@ -29,7 +29,7 @@ public class DoneFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private SharedViewModel sharedViewModel;
-    private TicketAdapter ticketAdapter;
+    public static  TicketAdapter ticketAdapter;
     private EditText searchDoneTickets;
     public static final int REQUEST_CODE = 1;
 

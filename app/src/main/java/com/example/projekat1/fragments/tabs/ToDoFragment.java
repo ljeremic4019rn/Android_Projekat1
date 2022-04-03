@@ -43,7 +43,7 @@ import java.util.Objects;
 public class ToDoFragment extends Fragment {
     private RecyclerView recyclerView;
     private SharedViewModel sharedViewModel;
-    private TicketAdapter ticketAdapter;
+    public static  TicketAdapter ticketAdapter;
     private EditText searchTodoTickets;
     public static final int REQUEST_CODE = 1;
 
@@ -66,6 +66,7 @@ public class ToDoFragment extends Fragment {
         recyclerView = view.findViewById(R.id.listRv);
         searchTodoTickets = view.findViewById(R.id.searchTodoTickets);
     }
+
 
     private void initObservers() {
         sharedViewModel.getTicketsTodoLiveData().observe(getViewLifecycleOwner(), tickets -> {

@@ -29,7 +29,7 @@ public class InProgessFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private SharedViewModel sharedViewModel;
-    private TicketAdapter ticketAdapter;
+    public static  TicketAdapter ticketAdapter;
     private EditText searchProgressTickets;
     public static final int REQUEST_CODE = 1;
 
