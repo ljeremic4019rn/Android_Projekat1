@@ -24,7 +24,7 @@ public class ProfileFragment extends Fragment {
     private TextView email;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {//todo popravi xml file
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 

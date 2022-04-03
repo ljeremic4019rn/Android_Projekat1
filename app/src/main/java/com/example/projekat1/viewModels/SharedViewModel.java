@@ -36,6 +36,8 @@ public class SharedViewModel extends ViewModel {
 
 
     public SharedViewModel() {
+
+        System.out.println("NAPRAVILI SMO OVO");
         if (fill){
             addTestTickets();//napunjeno sa filler ticketima
             fill = false;

@@ -71,7 +71,7 @@ public class NewTicketFragment extends Fragment {
     }
 
     private void initListeners(){
-        addButton.setOnClickListener(v -> {//todo isprazni sva polja
+        addButton.setOnClickListener(v -> {
             if(checkIfAllSelected()){
                 Ticket ticket = new Ticket(typeSpinner.getSelectedItem().toString(), prioritySpinner.getSelectedItem().toString(),
                         Integer.parseInt(estimated.getText().toString()),title.getText().toString(),description.getText().toString());

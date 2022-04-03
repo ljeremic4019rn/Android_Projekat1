@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkLogin(){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (loggedIn){
-            transaction.add(R.id.mainFragContainer, new BottomNavFragment(), MAIN_FRAGMENT);//todo change to main fragment
+            transaction.add(R.id.mainFragContainer, new BottomNavFragment()/*, MAIN_FRAGMENT*/);
         }
         else {
             transaction.add(R.id.mainFragContainer, new LogInFragment());

@@ -64,7 +64,7 @@ public class LogInFragment extends Fragment {
 
 
                     FragmentTransaction transaction = this.getActivity().getSupportFragmentManager().beginTransaction();//pokrenemo main fragment
-                    transaction.replace(R.id.mainFragContainer, new BottomNavFragment());//todo change to main fragment
+                    transaction.replace(R.id.mainFragContainer, new BottomNavFragment());
                     transaction.commit();
                 }
                 else toastError("Credentials are incorrect");
