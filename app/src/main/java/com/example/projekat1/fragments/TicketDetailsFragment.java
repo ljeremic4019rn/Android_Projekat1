@@ -83,7 +83,7 @@ public class TicketDetailsFragment extends Fragment {
 
         if (sharedPreferences.getString(MainActivity.LOGGED_USER, "").contains("admin")){
             editButton.setOnClickListener(e -> {
-                transaction.replace(R.id.singleFratView, new EditTicketFragment());
+                transaction.replace(R.id.singleFratView, new EditTicketFragment(ticket));
 //                transaction.addToBackStack(null); //ovo moze da bude funkcionalnost ali nema potrebe
                 transaction.commit();
             });

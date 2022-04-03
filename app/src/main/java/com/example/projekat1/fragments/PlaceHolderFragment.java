@@ -27,7 +27,7 @@ public class PlaceHolderFragment extends Fragment {
         }
 
         FragmentTransaction transaction = this.requireActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFragContainer, new EditTicketFragment());
+//        transaction.replace(R.id.mainFragContainer, new EditTicketFragment());
         transaction.addToBackStack(null);
         transaction.commit();
 

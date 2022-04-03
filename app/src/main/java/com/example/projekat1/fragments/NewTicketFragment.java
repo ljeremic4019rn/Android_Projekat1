@@ -71,19 +71,18 @@ public class NewTicketFragment extends Fragment {
     }
 
     private void initListeners(){
-            addButton.setOnClickListener(v -> {
-                System.out.println("KURACCC");
-                if(checkIfAllSelected()){
-//                    Ticket ticket = new Ticket(typeSpinner.getSelectedItem().toString(), prioritySpinner.getSelectedItem().toString(),
-//                            Integer.parseInt(estimated.getText().toString()),title.getText().toString(),description.getText().toString());
-
-                    Ticket ticket = new Ticket("asdf","asdf",12,"new","ccccc");
-                    sharedViewModel.addTodoTicket(ticket);
-                } else {
+        addButton.setOnClickListener(v -> {//todo isprazni sva polja
+            if(checkIfAllSelected()){
+                Ticket ticket = new Ticket(typeSpinner.getSelectedItem().toString(), prioritySpinner.getSelectedItem().toString(),
+                        Integer.parseInt(estimated.getText().toString()),title.getText().toString(),description.getText().toString());
+//                    Ticket ticket = new Ticket("asdf","asdf",12,"new","ccccc");
+                sharedViewModel.addTodoTicket(ticket);
+                clearAllFields();
+            } else {
 //                    Toast.makeText(this.getActivity(), "You have to fill in all the fields first.", Toast.LENGTH_LONG).show();
-                    showErrorToast();
-                }
-            });
+                showErrorToast();
+            }
+        });
     }
 
     private boolean checkIfAllSelected(){
@@ -103,5 +102,11 @@ public class NewTicketFragment extends Fragment {
         TextView text = view.findViewById(android.R.id.message);
         text.setTextColor(Color.WHITE);
         toast.show();
+    }
+
+    private void clearAllFields(){
+        estimated.setText("");
+        title.setText("");
+        description.setText("");
     }
 }

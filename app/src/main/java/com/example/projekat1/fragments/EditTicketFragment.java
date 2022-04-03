@@ -1,11 +1,15 @@
 package com.example.projekat1.fragments;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,9 +32,9 @@ public class EditTicketFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private Ticket ticket;
 
-    public EditTicketFragment() {
+    public EditTicketFragment(Ticket ticket) {
         super(R.layout.fragment_edit_ticket);
-//        this.ticket = ticket;
+        this.ticket = ticket;
     }
 
     @Override
@@ -51,6 +55,12 @@ public class EditTicketFragment extends Fragment {
         description = (EditText) view.findViewById(R.id.descriptionETEdit);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
+        if (ticket != null){
+            estimated.setText(String.valueOf(ticket.getEstimated()));
+            title.setText(ticket.getTitle());
+            description.setText(ticket.getDescription());
+        }
+
         ArrayAdapter<CharSequence> priorityAdapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.priority, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this.getActivity(),
@@ -66,7 +76,39 @@ public class EditTicketFragment extends Fragment {
 
     private void initOvservers(){
         editButton.setOnClickListener(v -> {
-
+            if (checkIfAllSelected()){
+                ticket.setType(typeSpinner.getSelectedItem().toString());
+                ticket.setPriority(prioritySpinner.getSelectedItem().toString());
+                ticket.setEstimated(Integer.parseInt(estimated.getText().toString()));
+                ticket.setTitle(title.getText().toString());
+                ticket.setDescription(description.getText().toString());
+                clearAllFields();
+            } else showErrorToast();
         });
+    }
+
+    private boolean checkIfAllSelected(){
+        return !title.getText().toString().equals("")
+                && !description.getText().toString().equals("")
+                && !estimated.getText().toString().equals("")
+                && !typeSpinner.getSelectedItem().toString().equals("") //todo promeni equals da bude pravilno zbog hinta
+                && !prioritySpinner.getSelectedItem().toString().equals("");//todo promeni equals da bude pravilno zbog hinta
+    }
+
+    private void showErrorToast(){
+        Toast toast = Toast.makeText(this.getActivity(), "All fields must be filled in to create ticket", Toast.LENGTH_SHORT);
+        View view = toast.getView();
+        //Gets the actual oval background of the Toast then sets the colour filter
+        view.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        //Gets the TextView from the Toast so it can be editted
+        TextView text = view.findViewById(android.R.id.message);
+        text.setTextColor(Color.WHITE);
+        toast.show();
+    }
+
+    private void clearAllFields(){
+        estimated.setText("");
+        title.setText("");
+        description.setText("");
     }
 }

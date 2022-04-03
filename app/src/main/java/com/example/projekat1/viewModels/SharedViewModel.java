@@ -82,7 +82,6 @@ public class SharedViewModel extends ViewModel {
     //dodatvanje / brisanje / pomeranje tiketa iz jednog taba u drugi
     public void addTodoTicket(Ticket ticket) {//good
         ticket.setId(counter++);
-        System.out.println("ccccc " + ticketsTodoTempList.size());
         ticketsTodoTempList.add(ticket);
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
@@ -140,13 +139,24 @@ public class SharedViewModel extends ViewModel {
 */
     public void updateTicket(String ticketString){
         String [] ticketSplit = ticketString.split("-");
+        ArrayList<Ticket> listToSubmit;
         Ticket ticket;
 
-        if(ticketSplit[6].equals(MainActivity.TODO))
+        if(ticketSplit[6].equals(MainActivity.TODO)){//todo NADJI NACIN DA PROUZROKUJES UPDATE
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsTodoTempList);
-        else if (ticketSplit[6].equals(MainActivity.IN_PROGRESS))
+            listToSubmit = new ArrayList<>(ticketsTodoTempList);
+            ticketsTodoLiveData.setValue(listToSubmit);
+        }
+        else if (ticketSplit[6].equals(MainActivity.IN_PROGRESS)){
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsInProgressTempList);
-        else  ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsDoneTempList);
+            listToSubmit = new ArrayList<>(ticketsInProgressTempList);
+            ticketsInProgressLiveData.setValue(listToSubmit);
+        }
+        else  {
+            ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsDoneTempList);
+            listToSubmit = new ArrayList<>(ticketsDoneTempList);
+            ticketsDoneLiveData.setValue(listToSubmit);
+        }
 
         if(ticket != null){
             ticket.setType(ticketSplit[1]);
