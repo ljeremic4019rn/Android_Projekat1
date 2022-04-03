@@ -41,6 +41,7 @@ public class SingleFragmentDisplay extends AppCompatActivity {
                     .putString(MainActivity.MAIN_FRAGMENT, ticket.toString())
                     .apply();
             setResult(RESULT_OK);
+            TicketDetailsFragment.increase = true;
             finish();
         }
     }
@@ -55,6 +56,7 @@ public class SingleFragmentDisplay extends AppCompatActivity {
                 .apply();
         setResult(RESULT_OK);
         failsafe = true;
+        TicketDetailsFragment.increase = true;
         finish();
     }
 }

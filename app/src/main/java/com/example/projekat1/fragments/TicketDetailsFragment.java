@@ -29,6 +29,7 @@ public class TicketDetailsFragment extends Fragment {
     private ImageView image;
     private int buttonNum;
     private Ticket ticket;
+    public static boolean increase = true;
 
     public TicketDetailsFragment(Ticket ticket) {
         super(R.layout.fragment_ticket_details);
@@ -75,8 +76,16 @@ public class TicketDetailsFragment extends Fragment {
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();//pokrenemo main fragment
 
         loggedTimeButton.setOnClickListener(v ->{
-            loggedTimeButton.setText(String.valueOf(++buttonNum));
-            ticket.setLoggedTime(buttonNum);
+            if (increase){
+                loggedTimeButton.setText(String.valueOf(++buttonNum));
+                ticket.setLoggedTime(buttonNum);
+                increase = false;
+            }
+            else {
+                loggedTimeButton.setText(String.valueOf(--buttonNum));
+                ticket.setLoggedTime(buttonNum);
+                increase = true;
+            }
             if (buttonNum > ticket.getEstimated()) loggedTimeButton.setBackgroundColor(Color.RED);
         });
 
