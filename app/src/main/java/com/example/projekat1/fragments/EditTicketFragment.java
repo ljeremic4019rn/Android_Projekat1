@@ -14,11 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projekat1.R;
 import com.example.projekat1.models.Ticket;
-import com.example.projekat1.viewModels.SharedViewModel;
 
 public class EditTicketFragment extends Fragment {
 
@@ -28,7 +26,6 @@ public class EditTicketFragment extends Fragment {
     private EditText estimated;
     private EditText title;
     private EditText description;
-    private SharedViewModel sharedViewModel;
     private Ticket ticket;
 
     public EditTicketFragment(Ticket ticket) {
@@ -50,7 +47,6 @@ public class EditTicketFragment extends Fragment {
         estimated = (EditText) view.findViewById(R.id.estimatedETEdit);
         title = (EditText) view.findViewById(R.id.titleETEdit);
         description = (EditText) view.findViewById(R.id.descriptionETEdit);
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         if (ticket != null){
             estimated.setText(String.valueOf(ticket.getEstimated()));
