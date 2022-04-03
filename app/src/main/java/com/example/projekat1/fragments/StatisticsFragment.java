@@ -1,9 +1,7 @@
 package com.example.projekat1.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +13,7 @@ import com.example.projekat1.R;
 import com.example.projekat1.models.Ticket;
 import com.example.projekat1.viewModels.SharedViewModel;
 
-import java.util.List;
-
 public class StatisticsFragment extends Fragment {
-
     private TextView todoNum1;
     private TextView todoNum2;
     private TextView todoNum3;
@@ -65,11 +60,9 @@ public class StatisticsFragment extends Fragment {
                 }
                 else todoEnhancement++;
             }
-
             todoNum1.setText(String.valueOf(tickets.size()));
             todoNum2.setText(String.valueOf(todoBug));
             todoNum3.setText(String.valueOf(todoEnhancement));
-
         });
 
         sharedViewModel.getTicketsInProgressLiveData().observe(getViewLifecycleOwner(), tickets -> {
@@ -86,7 +79,6 @@ public class StatisticsFragment extends Fragment {
             progressNum1.setText(String.valueOf(tickets.size()));
             progressNum2.setText(String.valueOf(progressBug));
             progressNum3.setText(String.valueOf(progressEnhancement));
-
         });
 
         sharedViewModel.getTicketsDoneLiveData().observe(getViewLifecycleOwner(), tickets -> {
@@ -99,7 +91,6 @@ public class StatisticsFragment extends Fragment {
                 }
                 else doneEnhancement++;
             }
-
             doneNum1.setText(String.valueOf(tickets.size()));
             doneNum2.setText(String.valueOf(doneBug));
             doneNum3.setText(String.valueOf(doneEnhancement));

@@ -1,27 +1,17 @@
 package com.example.projekat1.fragments.tabs;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,24 +20,18 @@ import com.example.projekat1.R;
 import com.example.projekat1.activities.MainActivity;
 import com.example.projekat1.activities.SingleFragmentDisplay;
 import com.example.projekat1.fragments.BottomNavFragment;
-import com.example.projekat1.fragments.EditTicketFragment;
-import com.example.projekat1.fragments.NewTicketFragment;
-import com.example.projekat1.models.Ticket;
 import com.example.projekat1.recycler.TicketAdapter;
 import com.example.projekat1.recycler.TicketDiffItemCallback;
 import com.example.projekat1.viewModels.SharedViewModel;
 
-import java.util.Objects;
-
 
 public class ToDoFragment extends Fragment {
+
     private RecyclerView recyclerView;
     private SharedViewModel sharedViewModel;
     public static  TicketAdapter ticketAdapter;
     private EditText searchTodoTickets;
     public static final int REQUEST_CODE = 1;
-
-
 
     public ToDoFragment() {
         super(R.layout.fragment_todo);
@@ -67,11 +51,8 @@ public class ToDoFragment extends Fragment {
         searchTodoTickets = view.findViewById(R.id.searchTodoTickets);
     }
 
-
     private void initObservers() {
-        sharedViewModel.getTicketsTodoLiveData().observe(getViewLifecycleOwner(), tickets -> {
-            ticketAdapter.submitList(tickets);
-        });
+        sharedViewModel.getTicketsTodoLiveData().observe(getViewLifecycleOwner(), tickets -> ticketAdapter.submitList(tickets));
 
         searchTodoTickets.addTextChangedListener(new TextWatcher() {
             @Override

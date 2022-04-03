@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +31,6 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
         super(diffCallback);
         this.onTicketClicked = onTicketClicked;
         TicketAdapter.sharedViewModel = sharedViewModel;
-
     }
 
     @NonNull
@@ -44,8 +42,6 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
             Ticket ticket = getItem(position);
             onTicketClicked.accept(ticket);
         });
-
-
     }
 
     @Override
@@ -67,8 +63,6 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                     onItemClicked.accept(getBindingAdapterPosition());
                 }
             });
-
-
         }
 
         public void bind(Ticket ticket) {
@@ -109,7 +103,6 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                     });
                 }
                 else iButtonBottom.setVisibility(View.INVISIBLE);//ako nije admin sakri dugme
-
             }
             //za in progress recycler
             else if (ticket.getProgress().equals(MainActivity.IN_PROGRESS)){
@@ -130,6 +123,5 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                 iButtonBottom.setVisibility(View.INVISIBLE);
             }
         }
-
     }
 }

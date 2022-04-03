@@ -1,12 +1,6 @@
 package com.example.projekat1.viewModels;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.os.Parcelable;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,9 +10,9 @@ import com.example.projekat1.fragments.tabs.DoneFragment;
 import com.example.projekat1.fragments.tabs.InProgessFragment;
 import com.example.projekat1.fragments.tabs.ToDoFragment;
 import com.example.projekat1.models.Ticket;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SharedViewModel extends ViewModel {
@@ -36,13 +30,10 @@ public class SharedViewModel extends ViewModel {
 
     public SharedViewModel() {
 
-
         if (MainActivity.refill){
             addTestTickets();//napunjeno sa filler ticketima
             MainActivity.refill = false;
         }
-
-
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
@@ -84,7 +75,6 @@ public class SharedViewModel extends ViewModel {
                         || ticket.getDescription().toLowerCase().contains(filter.toLowerCase())).collect(Collectors.toList());
         ticketsDoneLiveData.setValue(filteredList);
     }
-
 
     //dodatvanje / brisanje / pomeranje tiketa iz jednog taba u drugi
     public void addTodoTicket(Ticket ticket) {//good

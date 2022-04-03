@@ -8,7 +8,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +32,6 @@ public class DoneFragment extends Fragment {
     private EditText searchDoneTickets;
     public static final int REQUEST_CODE = 1;
 
-
     public DoneFragment() {
         super(R.layout.fragment_done);
     }
@@ -53,9 +51,7 @@ public class DoneFragment extends Fragment {
     }
 
     private void initObservers() {
-        sharedViewModel.getTicketsDoneLiveData().observe(getViewLifecycleOwner(), tickets -> {
-            ticketAdapter.submitList(tickets);
-        });
+        sharedViewModel.getTicketsDoneLiveData().observe(getViewLifecycleOwner(), tickets -> ticketAdapter.submitList(tickets));
 
         searchDoneTickets.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,7 +83,6 @@ public class DoneFragment extends Fragment {
     }
 
     private void initRecycler(View view) {
-        BottomNavFragment bottomNavFragment = (BottomNavFragment)  this.requireActivity().getSupportFragmentManager().findFragmentByTag(MainActivity.MAIN_FRAGMENT);
         ticketAdapter = new TicketAdapter(sharedViewModel, new TicketDiffItemCallback(), ticket -> {
 //            Toast.makeText(getActivity(), ticket.getId() + "asdfasdf", Toast.LENGTH_SHORT).show();
 //            transaction.replace(R.id.mainFragContainer, new EditTicketFragment());

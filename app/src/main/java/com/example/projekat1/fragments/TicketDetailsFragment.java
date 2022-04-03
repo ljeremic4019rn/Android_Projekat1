@@ -54,7 +54,6 @@ public class TicketDetailsFragment extends Fragment {
         estimation = view.findViewById(R.id.tdEstimation);
         description = view.findViewById(R.id.tdDescription);
         loggedTimeButton = view.findViewById(R.id.tdLoggedButton);
-
     }
 
     private void initText(){

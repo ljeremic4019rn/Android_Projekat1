@@ -1,7 +1,6 @@
 package com.example.projekat1.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
@@ -26,6 +25,7 @@ public class Ticket implements Serializable {
         this.loggedTime = 0;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return id + "-" + type + "-" + priority + "-" + estimated + "-" + title + "-" + description + "-" + progress + "-" + loggedTime;

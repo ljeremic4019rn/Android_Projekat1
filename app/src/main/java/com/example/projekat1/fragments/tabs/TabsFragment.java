@@ -2,19 +2,13 @@ package com.example.projekat1.fragments.tabs;
 
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
-
 import com.example.projekat1.R;
-import com.example.projekat1.viewModels.SharedViewModel;
 import com.example.projekat1.viewPagers.TabPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Objects;
 
 public class TabsFragment extends Fragment {
 

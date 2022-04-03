@@ -7,34 +7,24 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.projekat1.R;
 import com.example.projekat1.viewPagers.BottomNavPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.sql.SQLOutput;
-
 public class BottomNavFragment extends Fragment {
 
     private ViewPager viewPager;
-
 
     public BottomNavFragment() {
         super(R.layout.fragment_bottom_navigation);
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

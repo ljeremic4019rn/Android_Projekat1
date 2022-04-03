@@ -14,15 +14,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projekat1.R;
-import com.example.projekat1.activities.MainActivity;
 import com.example.projekat1.models.Ticket;
 import com.example.projekat1.viewModels.SharedViewModel;
 
 public class EditTicketFragment extends Fragment {
+
     private Spinner typeSpinner;
     private Spinner prioritySpinner;
     private Button editButton;
@@ -42,8 +41,6 @@ public class EditTicketFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
         initOvservers();
-
-//        System.out.println("U TICKETU " + ticket.getTitle());
     }
 
     private void initView(View view){
@@ -72,7 +69,6 @@ public class EditTicketFragment extends Fragment {
         prioritySpinner.setAdapter(priorityAdapter);
         typeSpinner.setAdapter(typeAdapter);
     }
-
 
     private void initOvservers(){
         editButton.setOnClickListener(v -> {

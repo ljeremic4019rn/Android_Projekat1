@@ -34,8 +34,6 @@ public class NewTicketFragment extends Fragment {
         super(R.layout.fragment_new_ticket);
     }
 
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -52,7 +50,6 @@ public class NewTicketFragment extends Fragment {
         description = (EditText) view.findViewById(R.id.descriptionET);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
-
         //stavljanje stvari u spinnere
         ArrayAdapter<CharSequence> priorityAdapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.priority, android.R.layout.simple_spinner_item);
@@ -67,7 +64,6 @@ public class NewTicketFragment extends Fragment {
 
         //https://stackoverflow.com/questions/47791790/disabling-the-first-item-in-a-spinner
         //todo namesti hint od spinnera
-
     }
 
     private void initListeners(){

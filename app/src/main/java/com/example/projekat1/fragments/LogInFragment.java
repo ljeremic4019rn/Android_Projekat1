@@ -15,9 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projekat1.R;
-import com.example.projekat1.activities.SingleFragmentDisplay;
-import com.example.projekat1.models.User;
 import com.example.projekat1.activities.MainActivity;
+import com.example.projekat1.models.User;
 
 public class LogInFragment extends Fragment {
 
@@ -26,8 +25,6 @@ public class LogInFragment extends Fragment {
     private EditText email;
     private Button loginBtn;
 
-
-
     public LogInFragment() {
         super(R.layout.activity_login);
     }
@@ -35,15 +32,12 @@ public class LogInFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         init(view);
-
     }
 
     private void init(View view){
@@ -70,8 +64,7 @@ public class LogInFragment extends Fragment {
                             .putString(MainActivity.LOGGED_MAIL, umail)
                             .apply();
 
-
-                    FragmentTransaction transaction = this.getActivity().getSupportFragmentManager().beginTransaction();//pokrenemo main fragment
+                    FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();//pokrenemo main fragment
                     transaction.replace(R.id.mainFragContainer, new BottomNavFragment());
                     transaction.commit();
                 }
@@ -91,5 +84,4 @@ public class LogInFragment extends Fragment {
 
         requireActivity().finish();
     }
-
 }

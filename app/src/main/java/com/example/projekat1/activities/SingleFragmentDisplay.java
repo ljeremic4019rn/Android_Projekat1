@@ -1,14 +1,13 @@
 package com.example.projekat1.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import com.example.projekat1.R;
-import com.example.projekat1.fragments.EditTicketFragment;
 import com.example.projekat1.fragments.TicketDetailsFragment;
 import com.example.projekat1.models.Ticket;
 

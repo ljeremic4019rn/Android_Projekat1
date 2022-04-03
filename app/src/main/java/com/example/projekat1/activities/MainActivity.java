@@ -1,22 +1,18 @@
 package com.example.projekat1.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.splashscreen.SplashScreen;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.projekat1.R;
-import com.example.projekat1.fragments.tabs.TabsFragment;
-import com.example.projekat1.models.Ticket;
-import com.example.projekat1.models.User;
 import com.example.projekat1.fragments.BottomNavFragment;
 import com.example.projekat1.fragments.LogInFragment;
-import com.example.projekat1.viewModels.SharedViewModel;
+import com.example.projekat1.models.User;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,14 +26,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String DONE = "done";
     public static final String MAIN_FRAGMENT = "mainFragment";
     public static boolean refill = true;
-    SharedPreferences sharedPreferences;
-
+    private SharedPreferences sharedPreferences;
     private boolean loggedIn;
     private String logged;
     public static final Map<String, User> users = new HashMap<>();
-    public static final ArrayList<Ticket> tickets = new ArrayList<>();
-
-//    public static final
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +45,10 @@ public class MainActivity extends AppCompatActivity {
         splashScreen.setKeepOnScreenCondition(() -> {
             setContentView(R.layout.activity_main);
             logged = sharedPreferences.getString(LOGGED_USER, "");
-            loggedIn = !logged.equals("");
+            loggedIn = !logged.equals("") && !logged.equals("replace");
             checkLogin();
-
             return false;
         });
-
-
-//        setContentView(R.layout.activity_main);//ZA TESTIRANJE
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.add(R.id.mainFragContainer, new TabsFragment());
-//        transaction.commit();
-
     }
 
     private void checkLogin(){

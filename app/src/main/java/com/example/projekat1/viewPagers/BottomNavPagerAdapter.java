@@ -13,17 +13,14 @@ import com.example.projekat1.fragments.tabs.TabsFragment;
 
 public class BottomNavPagerAdapter extends FragmentPagerAdapter {
 
-    private final int ITEM_COUNT = 4;
     public static final int FRAG_STAT_0 = 0;
     public static final int FRAG_NEW_1 = 1;
     public static final int FRAG_LIST_2 = 2;
     public static final int FRAG_PROFILE_3 = 3;
 
-
     public BottomNavPagerAdapter(@NonNull FragmentManager fm) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
-
 
     @NonNull
     @Override
@@ -47,12 +44,11 @@ public class BottomNavPagerAdapter extends FragmentPagerAdapter {
             break;
         }
         return fragment;
-
     }
 
     @Override
     public int getCount() {
-        return ITEM_COUNT;
+        return 4;
     }
 
 //    @Nullable

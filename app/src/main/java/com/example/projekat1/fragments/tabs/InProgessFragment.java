@@ -8,7 +8,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +32,6 @@ public class InProgessFragment extends Fragment {
     private EditText searchProgressTickets;
     public static final int REQUEST_CODE = 1;
 
-
     public InProgessFragment() {
         super(R.layout.fragment_in_progress);
     }
@@ -53,9 +51,7 @@ public class InProgessFragment extends Fragment {
     }
 
     private void initObservers() {
-        sharedViewModel.getTicketsInProgressLiveData().observe(getViewLifecycleOwner(), tickets -> {
-            ticketAdapter.submitList(tickets);
-        });
+        sharedViewModel.getTicketsInProgressLiveData().observe(getViewLifecycleOwner(), tickets -> ticketAdapter.submitList(tickets));
 
         searchProgressTickets.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,7 +83,6 @@ public class InProgessFragment extends Fragment {
     }
 
     private void initRecycler(View view) {
-        BottomNavFragment bottomNavFragment = (BottomNavFragment)  this.requireActivity().getSupportFragmentManager().findFragmentByTag(MainActivity.MAIN_FRAGMENT);
         ticketAdapter = new TicketAdapter(sharedViewModel, new TicketDiffItemCallback(), ticket -> {
 //            Toast.makeText(getActivity(), ticket.getId() + "asdfasdf", Toast.LENGTH_SHORT).show();//todo pokusaj da ovo provalis kako se radi / pitaj asistenta
 //            transaction.replace(R.id.mainFragContainer, new EditTicketFragment());

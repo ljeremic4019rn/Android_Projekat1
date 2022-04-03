@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,13 +17,13 @@ import com.example.projekat1.activities.MainActivity;
 
 public class ProfileFragment extends Fragment {
 
-    public ProfileFragment() {
-        super(R.layout.fragment_profile);
-    }
-
     private TextView username;
     private TextView email;
     private Button logout;
+
+    public ProfileFragment() {
+        super(R.layout.fragment_profile);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +48,6 @@ public class ProfileFragment extends Fragment {
 
         logout.setOnClickListener(v -> {
             MainActivity.refill = true;
-
             sharedPreferences
                     .edit()
                     .putString(MainActivity.LOGGED_USER, "replace")
