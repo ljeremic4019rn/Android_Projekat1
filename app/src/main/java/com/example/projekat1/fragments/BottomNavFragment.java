@@ -45,7 +45,7 @@ public class BottomNavFragment extends Fragment {
     @SuppressLint("NonConstantResourceId")
     private void init(View view){
         viewPager = view.findViewById(R.id.viewPager);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(12);
         viewPager.setAdapter(new BottomNavPagerAdapter(this.requireActivity().getSupportFragmentManager()));
 
         ((BottomNavigationView) view.findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {

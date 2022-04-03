@@ -38,7 +38,7 @@ public class TabsFragment extends Fragment {
 
     private void init(View view){
         viewPager = (ViewPager) view.findViewById(R.id.viewPagerTabs);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(10);
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
 
         viewPager.setAdapter(new TabPagerAdapter(this.requireActivity().getSupportFragmentManager()));

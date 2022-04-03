@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String IN_PROGRESS = "inprogress";
     public static final String DONE = "done";
     public static final String MAIN_FRAGMENT = "mainFragment";
+    public static boolean refill = true;
+    SharedPreferences sharedPreferences;
 
     private boolean loggedIn;
     private String logged;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         users.put("admin_marko", new User("admin_marko","1234","marko@gmail.com"));
         users.put("luka", new User("luka","1234","luka@gmail.com"));

@@ -1,6 +1,7 @@
 package com.example.projekat1.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -14,15 +15,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projekat1.R;
+import com.example.projekat1.activities.SingleFragmentDisplay;
 import com.example.projekat1.models.User;
 import com.example.projekat1.activities.MainActivity;
 
 public class LogInFragment extends Fragment {
 
-    EditText username;
-    EditText password;
-    EditText email;
-    Button loginBtn;
+    private EditText username;
+    private EditText password;
+    private EditText email;
+    private Button loginBtn;
+
+
 
     public LogInFragment() {
         super(R.layout.activity_login);
@@ -55,7 +59,11 @@ public class LogInFragment extends Fragment {
             if(MainActivity.users.containsKey(uname)){//proverimo da li user uopte posoji
                 User user = MainActivity.users.get(uname);
                 if(user.getPassword().equals(password.getText().toString().trim()) && user.getEmail().equals(umail)){//proverimo da li matchuju podaci
-                    SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getActivity().getPackageName(), Context.MODE_PRIVATE);
+                    SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(requireActivity().getPackageName(), Context.MODE_PRIVATE);
+
+                    if(sharedPreferences.getString(MainActivity.LOGGED_USER,"").equals("replace"))
+                        restartApp(view);
+
                     sharedPreferences//stavimo koji je user trenutno ulogovan
                             .edit()
                             .putString(MainActivity.LOGGED_USER, uname)
@@ -75,6 +83,13 @@ public class LogInFragment extends Fragment {
 
     private void toastError(String error){
         Toast.makeText(this.getActivity(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    private void restartApp(View view){
+        Intent intent = new Intent(view.getContext(),  MainActivity.class);
+        startActivity(intent);
+
+        requireActivity().finish();
     }
 
 }

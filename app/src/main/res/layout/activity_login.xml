@@ -19,19 +19,19 @@
         app:layout_constraintVertical_bias="0.855" />
 
     <EditText
-        android:id="@+id/logPass"
+        android:id="@+id/logUsername"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="@string/password"
+        android:hint="@string/username"
         android:imeOptions="actionDone"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:lines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintVertical_bias="0.466" />
 
     <EditText
         android:id="@+id/email"
@@ -43,47 +43,52 @@
         android:lines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
+        app:layout_constraintVertical_bias="0.65" />
 
     <EditText
-        android:id="@+id/logUsername"
+        android:id="@+id/logPass"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="@string/username"
+        android:hint="@string/password"
         android:imeOptions="actionDone"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:lines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.558" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="154dp"
-        android:layout_height="115dp"
+        android:layout_width="208dp"
+        android:layout_height="159dp"
         app:layout_constraintBottom_toTopOf="@+id/logUsername"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117"
         app:srcCompat="@drawable/ic_baseline_sticky_note_2_24" />
 
     <TextView
         android:id="@+id/TitleTV"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="278dp"
+        android:layout_height="83dp"
         android:text="@string/jira_system_for_raf_students"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/logUsername"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.237" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 public class SharedViewModel extends ViewModel {
 
     public static int counter = 1;
-    private static boolean fill = true;
 
     private final MutableLiveData<List<Ticket>> ticketsTodoLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Ticket>> ticketsInProgressLiveData = new MutableLiveData<>();
@@ -37,11 +36,13 @@ public class SharedViewModel extends ViewModel {
 
     public SharedViewModel() {
 
-        System.out.println("NAPRAVILI SMO OVO");
-        if (fill){
+
+        if (MainActivity.refill){
             addTestTickets();//napunjeno sa filler ticketima
-            fill = false;
+            MainActivity.refill = false;
         }
+
+
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
