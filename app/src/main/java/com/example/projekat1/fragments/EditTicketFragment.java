@@ -87,8 +87,8 @@ public class EditTicketFragment extends Fragment {
         return !title.getText().toString().equals("")
                 && !description.getText().toString().equals("")
                 && !estimated.getText().toString().equals("")
-                && !typeSpinner.getSelectedItem().toString().equals("") //todo promeni equals da bude pravilno zbog hinta
-                && !prioritySpinner.getSelectedItem().toString().equals("");//todo promeni equals da bude pravilno zbog hinta
+                && !typeSpinner.getSelectedItem().toString().equals("Type")
+                && !prioritySpinner.getSelectedItem().toString().equals("Priority");
     }
 
     private void showErrorToast(){

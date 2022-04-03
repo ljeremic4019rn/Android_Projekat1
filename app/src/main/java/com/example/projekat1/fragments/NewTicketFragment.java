@@ -61,9 +61,6 @@ public class NewTicketFragment extends Fragment {
         // Apply the adapter to the spinner
         prioritySpinner.setAdapter(priorityAdapter);
         typeSpinner.setAdapter(typeAdapter);
-
-        //https://stackoverflow.com/questions/47791790/disabling-the-first-item-in-a-spinner
-        //todo namesti hint od spinnera
     }
 
     private void initListeners(){
@@ -71,11 +68,9 @@ public class NewTicketFragment extends Fragment {
             if(checkIfAllSelected()){
                 Ticket ticket = new Ticket(typeSpinner.getSelectedItem().toString(), prioritySpinner.getSelectedItem().toString(),
                         Integer.parseInt(estimated.getText().toString()),title.getText().toString(),description.getText().toString());
-//                    Ticket ticket = new Ticket("asdf","asdf",12,"new","ccccc");
                 sharedViewModel.addTodoTicket(ticket);
                 clearAllFields();
             } else {
-//                    Toast.makeText(this.getActivity(), "You have to fill in all the fields first.", Toast.LENGTH_LONG).show();
                 showErrorToast();
             }
         });
@@ -85,8 +80,8 @@ public class NewTicketFragment extends Fragment {
         return !title.getText().toString().equals("")
                 && !description.getText().toString().equals("")
                 && !estimated.getText().toString().equals("")
-                && !typeSpinner.getSelectedItem().toString().equals("") //todo promeni equals da bude pravilno zbog hinta
-                && !prioritySpinner.getSelectedItem().toString().equals("");//todo promeni equals da bude pravilno zbog hinta
+                && !typeSpinner.getSelectedItem().toString().equals("Type")
+                && !prioritySpinner.getSelectedItem().toString().equals("Priority");
     }
 
     private void showErrorToast(){
