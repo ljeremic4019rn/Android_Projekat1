@@ -27,16 +27,9 @@ public class SingleFragmentDisplay extends AppCompatActivity {
     private void initFragment(){
         ticket = (Ticket) getIntent().getSerializableExtra("ticket");
 
-        if(getIntent().getStringExtra("type").equals("details")){
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.singleFratView, new TicketDetailsFragment(ticket));
-            transaction.commit();
-        }
-        else {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.singleFratView, new EditTicketFragment());
-            transaction.commit();
-        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.singleFratView, new TicketDetailsFragment(ticket));
+        transaction.commit();
     }
 
     @Override

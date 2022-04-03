@@ -94,7 +94,6 @@ public class InProgessFragment extends Fragment {
 //            transaction.addToBackStack(null);
 //            transaction.commit();
             Intent intent = new Intent(view.getContext(),  SingleFragmentDisplay.class);
-            intent.putExtra("type", "details");
             intent.putExtra("ticket", ticket);
             startActivityForResult(intent , REQUEST_CODE);
         });

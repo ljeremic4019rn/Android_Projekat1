@@ -24,6 +24,7 @@
     <string name="estimation">Estimation</string>
     <string name="logged_time">Logged time</string>
     <string name="ticket_desc">Ticket desc.</string>
+    <string name="edit">Edit</string>
 
     <!--    SPINNER ELEMENTS    -->
     <string-array name="ticket_type">
