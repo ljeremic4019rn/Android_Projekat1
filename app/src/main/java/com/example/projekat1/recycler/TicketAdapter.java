@@ -98,7 +98,6 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
                 if(isAdmin){
                     iButtonBottom.setImageResource(R.drawable.ic_remove);//ako je admin ima remove
                     iButtonBottom.setOnClickListener(bb ->{
-                        System.out.println("KURAC ");
                         sharedViewModel.removeTodoTicket(ticket);
                     });
                 }
