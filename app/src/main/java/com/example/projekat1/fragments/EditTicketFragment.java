@@ -74,10 +74,13 @@ public class EditTicketFragment extends Fragment {
                 ticket.setEstimated(Integer.parseInt(estimated.getText().toString()));
                 ticket.setTitle(title.getText().toString());
                 ticket.setDescription(description.getText().toString());
-                clearAllFields();
+//                clearAllFields();
+                requireActivity().onBackPressed();
             } else showErrorToast();
         });
     }
+
+
 
     private boolean checkIfAllSelected(){
         return !title.getText().toString().equals("")
