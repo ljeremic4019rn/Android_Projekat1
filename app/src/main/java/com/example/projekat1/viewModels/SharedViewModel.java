@@ -23,6 +23,10 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<List<Ticket>> ticketsInProgressLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Ticket>> ticketsDoneLiveData = new MutableLiveData<>();
 
+    private final MutableLiveData<List<Ticket>> statisticsToDoLD = new MutableLiveData<>();
+    private final MutableLiveData<List<Ticket>> statisticsProgressLD = new MutableLiveData<>();
+    private final MutableLiveData<List<Ticket>> statisticsDoneLD = new MutableLiveData<>();
+
     private final ArrayList<Ticket> ticketsTodoTempList = new ArrayList<>();
     private final ArrayList<Ticket> ticketsInProgressTempList = new ArrayList<>();
     private final ArrayList<Ticket> ticketsDoneTempList = new ArrayList<>();
@@ -37,23 +41,33 @@ public class SharedViewModel extends ViewModel {
 
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
+        statisticsToDoLD.setValue(listToSubmit);
         ArrayList<Ticket> listToSubmit2 = new ArrayList<>(ticketsInProgressTempList);
         ticketsInProgressLiveData.setValue(listToSubmit2);
+        statisticsProgressLD.setValue(listToSubmit2);
         ArrayList<Ticket> listToSubmit3 = new ArrayList<>(ticketsDoneTempList);
         ticketsDoneLiveData.setValue(listToSubmit3);
+        statisticsDoneLD.setValue(listToSubmit3);
     }
 
     //getteri
     public MutableLiveData<List<Ticket>> getTicketsTodoLiveData() {
         return ticketsTodoLiveData;
     }
-
     public MutableLiveData<List<Ticket>> getTicketsInProgressLiveData() {
         return ticketsInProgressLiveData;
     }
-
     public MutableLiveData<List<Ticket>> getTicketsDoneLiveData() {
         return ticketsDoneLiveData;
+    }
+    public MutableLiveData<List<Ticket>> getStatisticsToDoLD() {
+        return statisticsToDoLD;
+    }
+    public MutableLiveData<List<Ticket>> getStatisticsProgressLD() {
+        return statisticsProgressLD;
+    }
+    public MutableLiveData<List<Ticket>> getStatisticsDoneLD() {
+        return statisticsDoneLD;
     }
 
     //search filteri
@@ -82,6 +96,7 @@ public class SharedViewModel extends ViewModel {
         ticketsTodoTempList.add(ticket);
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
+        statisticsToDoLD.setValue(listToSubmit);
     }
 
     public void removeTodoTicket(Ticket ticket) {//good
@@ -89,6 +104,7 @@ public class SharedViewModel extends ViewModel {
             ticketsTodoTempList.remove(ticket);
             ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
             ticketsTodoLiveData.setValue(listToSubmit);
+            statisticsToDoLD.setValue(listToSubmit);
         }
     }
 
@@ -97,6 +113,7 @@ public class SharedViewModel extends ViewModel {
         ticketsInProgressTempList.add(ticket);
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsInProgressTempList);
         ticketsInProgressLiveData.setValue(listToSubmit);
+        statisticsProgressLD.setValue(listToSubmit);
         removeTodoTicket(ticket);
     }
 
@@ -105,6 +122,7 @@ public class SharedViewModel extends ViewModel {
             ticketsInProgressTempList.remove(ticket);
             ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsInProgressTempList);
             ticketsInProgressLiveData.setValue(listToSubmit);
+            statisticsProgressLD.setValue(listToSubmit);
         }
     }
 
@@ -113,6 +131,7 @@ public class SharedViewModel extends ViewModel {
         ticketsTodoTempList.add(ticket);
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsTodoTempList);
         ticketsTodoLiveData.setValue(listToSubmit);
+        statisticsToDoLD.setValue(listToSubmit);
         removeProgressTicket(ticket);
     }
 
@@ -121,6 +140,7 @@ public class SharedViewModel extends ViewModel {
         ticketsDoneTempList.add(ticket);
         ArrayList<Ticket> listToSubmit = new ArrayList<>(ticketsDoneTempList);
         ticketsDoneLiveData.setValue(listToSubmit);
+        statisticsDoneLD.setValue(listToSubmit);
         removeProgressTicket(ticket);
     }
 
@@ -144,6 +164,7 @@ public class SharedViewModel extends ViewModel {
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsTodoTempList);
             listToSubmit = new ArrayList<>(ticketsTodoTempList);
             ticketsTodoLiveData.setValue(listToSubmit);
+            statisticsToDoLD.setValue(listToSubmit);
 
             ToDoFragment.ticketAdapter.notifyDataSetChanged();//updateujemo listu
         }
@@ -151,6 +172,7 @@ public class SharedViewModel extends ViewModel {
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsInProgressTempList);
             listToSubmit = new ArrayList<>(ticketsInProgressTempList);
             ticketsInProgressLiveData.setValue(listToSubmit);
+            statisticsProgressLD.setValue(listToSubmit);
 
             InProgessFragment.ticketAdapter.notifyDataSetChanged();
 
@@ -159,6 +181,7 @@ public class SharedViewModel extends ViewModel {
             ticket = findTicket(Integer.parseInt(ticketSplit[0]), ticketsDoneTempList);
             listToSubmit = new ArrayList<>(ticketsDoneTempList);
             ticketsDoneLiveData.setValue(listToSubmit);
+            statisticsDoneLD.setValue(listToSubmit);
 
             DoneFragment.ticketAdapter.notifyDataSetChanged();
         }

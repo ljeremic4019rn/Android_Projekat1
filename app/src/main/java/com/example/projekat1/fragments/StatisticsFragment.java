@@ -50,7 +50,7 @@ public class StatisticsFragment extends Fragment {
     }
 
     private void setStatistics(){
-        sharedViewModel.getTicketsTodoLiveData().observe(getViewLifecycleOwner(), tickets -> {
+        sharedViewModel.getStatisticsToDoLD().observe(getViewLifecycleOwner(), tickets -> {
             int todoBug = 0;
             int todoEnhancement = 0;
 
@@ -65,7 +65,7 @@ public class StatisticsFragment extends Fragment {
             todoNum3.setText(String.valueOf(todoEnhancement));
         });
 
-        sharedViewModel.getTicketsInProgressLiveData().observe(getViewLifecycleOwner(), tickets -> {
+        sharedViewModel.getStatisticsProgressLD().observe(getViewLifecycleOwner(), tickets -> {
             int progressBug = 0;
             int progressEnhancement = 0;
 
@@ -81,7 +81,7 @@ public class StatisticsFragment extends Fragment {
             progressNum3.setText(String.valueOf(progressEnhancement));
         });
 
-        sharedViewModel.getTicketsDoneLiveData().observe(getViewLifecycleOwner(), tickets -> {
+        sharedViewModel.getStatisticsDoneLD().observe(getViewLifecycleOwner(), tickets -> {
             int doneBug = 0;
             int doneEnhancement = 0;
 
