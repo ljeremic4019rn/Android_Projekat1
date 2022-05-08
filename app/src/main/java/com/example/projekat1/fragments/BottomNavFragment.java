@@ -1,11 +1,14 @@
 package com.example.projekat1.fragments;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -38,6 +41,8 @@ public class BottomNavFragment extends Fragment {
         viewPager.setOffscreenPageLimit(12);
         viewPager.setAdapter(new BottomNavPagerAdapter(this.requireActivity().getSupportFragmentManager()));
 
+        setBottomNavColor(view);
+
         ((BottomNavigationView) view.findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 // setCurrentItem metoda viewPager samo obavesti koji je Item trenutno aktivan i onda metoda getItem u adapteru setuje odredjeni fragment za tu poziciju
@@ -57,4 +62,12 @@ public class BottomNavFragment extends Fragment {
             return true;
         });
     }
+
+    private void setBottomNavColor(View view){
+        BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottomNavigation);
+        if(!requireActivity().getTheme().equals("android.content.res.Resources$Theme@c92409f")){
+            bottomNavigationView.setBackgroundColor(Color.GRAY);
+        }
+    }
+
 }
