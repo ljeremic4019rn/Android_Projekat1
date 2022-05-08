@@ -84,7 +84,6 @@ public class ToDoFragment extends Fragment {
     }
 
     private void initRecycler(View view) {
-        BottomNavFragment bottomNavFragment = (BottomNavFragment)  this.requireActivity().getSupportFragmentManager().findFragmentByTag(MainActivity.MAIN_FRAGMENT);
         ticketAdapter = new TicketAdapter(sharedViewModel, new TicketDiffItemCallback(), ticket -> {
 //            Toast.makeText(getActivity(), ticket.getId() + "asdfasdf", Toast.LENGTH_SHORT).show();
 //            transaction.replace(R.id.mainFragContainer, new EditTicketFragment());

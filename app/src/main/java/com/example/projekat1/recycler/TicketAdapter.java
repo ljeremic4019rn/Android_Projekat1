@@ -39,7 +39,7 @@ public class TicketAdapter extends ListAdapter<Ticket, TicketAdapter.ViewHolder>
         // Create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ticket_list_item, parent, false);
         return new ViewHolder(view, parent.getContext(), position -> {
-            Ticket ticket = getItem(position);
+            Ticket ticket = getItem(position);//todo premesti sve on slick listeners u constructor
             onTicketClicked.accept(ticket);
         });
     }
